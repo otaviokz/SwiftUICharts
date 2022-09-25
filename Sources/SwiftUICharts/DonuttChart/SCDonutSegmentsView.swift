@@ -30,11 +30,23 @@ struct SCDonutSegmentsView: View {
     var body: some View {
         GeometryReader { proxy in
             ZStack {
-                ForEach(dataPoints.asDonutSegments(proxy.minRadius, width: lineWidth, padding: padding), id: \.id) { segment in
+                ForEach(segments(proxy.minRadius), id: \.id) { segment in
                     Path { path in
                         path.addArc(proxy.minCentre, radius: segment.radius, path: segment.path)
                     }
                     .stroke(segment.color, lineWidth: segment.width)
+                }
+                
+                ForEach(segments(proxy.minRadius), id: \.id) { segment in
+                    HStack {
+                        Text(segment.dataPoint.chartPercentString(with: .percent))
+                            .font(.callout)
+                            .foregroundColor(.white)
+                            .minimumScaleFactor(0.5)
+                            .lineLimit(1)
+                            .frame(maxWidth: lineWidth * 0.6)
+                    }
+                    .position(segment.labelPosition(from: proxy.middle))
                 }
                 
                 VStack(alignment: .center, spacing: 0) {
@@ -46,10 +58,14 @@ struct SCDonutSegmentsView: View {
                 .lineLimit(1)
                 .minimumScaleFactor(0.5)
                 .foregroundColor(.gray)
-                .frame(squareSide: proxy.width - 2.25 * (lineWidth + padding))
+                .frame(squareSide: proxy.minSize - 2.25 * (lineWidth + padding))
             }
-            .frame(width: proxy.width, height: proxy.width)
+            .frame(width: proxy.minSize, height: proxy.minSize)
         }
+    }
+    
+    func segments(_ radius: CGFloat) -> [SCDonutSegment] {
+        dataPoints.asDonutSegments(radius, width: lineWidth, padding: padding)
     }
 }
 
@@ -61,9 +77,8 @@ struct SCDonutSegmentsView_Previews: PreviewProvider {
 
 private extension Array where Element == SCDataPoint {
     func asDonutSegments(_ radius: CGFloat, width: CGFloat, padding: CGFloat) -> [SCDonutSegment] {
-        guard !isEmpty else { return [] }
         var startAngle = Angle.degrees(-90)
-        
+
         return map { data in
             let endAngle = startAngle + data.delta
             let path = (startAngle, endAngle)

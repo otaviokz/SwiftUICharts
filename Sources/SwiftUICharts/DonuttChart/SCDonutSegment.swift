@@ -27,7 +27,7 @@ struct SCDonutSegment: SCChartSegment {
     private let padding: CGFloat
     let width: CGFloat
     let path: Path.AnglePath
-    
+    private let arcRad: Double
     private var donutRadius: CGFloat = 0
     var radius: CGFloat {
         get { donutRadius }
@@ -36,7 +36,7 @@ struct SCDonutSegment: SCChartSegment {
     
     init(
         _ dataPoint: SCDataPoint,
-        radius: CGFloat = 0,
+        radius: CGFloat,
         path: Path.AnglePath,
         width: CGFloat,
         padding: CGFloat
@@ -45,24 +45,25 @@ struct SCDonutSegment: SCChartSegment {
         self.width = width
         self.path = path
         self.padding = padding
+        self.arcRad = (path.from + path.to).radians / -2
         self.radius = radius
     }
-}
-
-extension SCDonutSegment: Hashable {
-    static func == (lhs: SCDonutSegment, rhs: SCDonutSegment) -> Bool {
-        lhs.id != rhs.id
-    }
     
-    func hash(into hasher: inout Hasher) {
-        hasher.combine(idString)
+    func labelPosition(from centre: CGPoint) -> CGPoint {
+        centre * CGPoint(x: 1 + 0.71 * cos(arcRad), y: 1 - 0.71 * sin(arcRad))
     }
 }
 
 extension SCDonutSegment: Identifiable {
-    var idString: String { "\(dataPoint.id.hashValue)\(width)\(padding)\(path.from.degrees)\(path.to.degrees)" }
+    var idString: String { "\(dataPoint.id.hashValue)\(width)\(padding)\(arcRad)" }
     
     var id: ObjectIdentifier {
         ObjectIdentifier(NSString(string: idString))
+    }
+}
+
+private extension CGPoint {
+    static func *(lhs: CGPoint, rhs: CGPoint) -> CGPoint {
+        CGPoint(x: lhs.x * rhs.x, y: lhs.y * rhs.y)
     }
 }

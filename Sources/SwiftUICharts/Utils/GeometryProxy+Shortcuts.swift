@@ -16,7 +16,7 @@ public extension GeometryProxy {
     var middleY: CGFloat { middle.y }
     var minSize: CGFloat {
         switch (width + height == 0, width * height == 0) {
-        case (true, true): return 0
+        case (true, _): return 0
         case (false, true): return max(width, height)
         default: return min(width, height)
         }

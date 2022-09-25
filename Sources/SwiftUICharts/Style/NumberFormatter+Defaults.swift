@@ -34,7 +34,7 @@ public extension NumberFormatter {
     static var percent: NumberFormatter {
         let formatter = NumberFormatter().fraction(maxDigits: 1)
         formatter.numberStyle = .percent
-        formatter.percentSymbol = "%"
+        formatter.percentSymbol = "\u{fe6a}"
         return formatter
     }
     

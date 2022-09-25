@@ -28,6 +28,10 @@ public struct SCDataPoint: SCDataPointProtocol {
         formatter?.string(for: percentage) ?? defaultPercentSring
     }
     
+    func chartPercentString(with formatter: NumberFormatter? = nil, threshold: Double = 0.05) -> String {
+        percentage >= threshold ? percentString(with: formatter) : ""
+    }
+    
     var defaultPercentSring: String {
         String(format: "%.1f%%", percentage * 100)
     }
