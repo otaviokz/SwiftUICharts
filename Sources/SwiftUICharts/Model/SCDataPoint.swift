@@ -31,6 +31,10 @@ public struct SCDataPoint: SCDataPointProtocol {
     var defaultPercentSring: String {
         String(format: "%.1f%%", percentage * 100)
     }
+    
+    var delta: Angle {
+        .degrees(percentage * 360)
+    }
 }
 
 public extension Array where Element == SCDataPoint {
@@ -38,12 +42,24 @@ public extension Array where Element == SCDataPoint {
         let total = totaling
         return map { $0.withPercentage($0.value / total) }
     }
+    
+    internal func prefix(to pallete: SCPalletes.Graph, descending: Bool = true) -> [SCDataPoint] {
+        sorted(descending: descending).prefix(to: pallete).colored(to: pallete).computingPercentages()
+    }
+    
+    private func prefix(to pallete: SCPalletes.Graph) -> [SCDataPoint] {
+        [SCDataPoint](prefix(pallete.colors.count))
+    }
+    
+    private func colored(to pallete: SCPalletes.Graph) -> [SCDataPoint] {
+        zip(self, pallete.colors).map { $0.with($1) }
+    }
 }
 
 extension SCDataPoint {
     private static var donut: SCPalletes.Graph { .donut }
     
-    static var sampleDataHouse: [SCDataPoint] {
+    public static var sampleHome: [SCDataPoint] {
         [
             SCDataPoint("Rent", value: 1200, color: donut.colors[0]),
             SCDataPoint("Utility", value: 800.12, color: donut.colors[1]),
@@ -53,4 +69,19 @@ extension SCDataPoint {
             SCDataPoint("Fun", value: 575, color: donut.colors[5])
         ]
     }
+    
+    public static var sampleGov: [SCDataPoint] {
+        [
+            SCDataPoint("Education", value: 100000000, color: donut.colors[3]),
+            SCDataPoint("Military", value: 750000000, color: donut.colors[1]),
+            SCDataPoint("Transport", value: 250000000, color: donut.colors[2]),
+            SCDataPoint("Health", value: 150000000, color: donut.colors[0])
+        ]
+    }
+    
+    func with(_ newColor: Color) -> SCDataPoint {
+        SCDataPoint(title, value: value, color: newColor, percentage: percentage)
+    }
 }
+
+
