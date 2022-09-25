@@ -89,5 +89,5 @@ class SCDataPointTests: XCTestCase {
         return formatter
     }()
     
-    private let home = SCDataPoint.sampleDataHouse
+    private let home = SCDataPoint.sampleHome
 }
