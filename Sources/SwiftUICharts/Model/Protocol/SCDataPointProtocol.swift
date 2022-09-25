@@ -37,7 +37,15 @@ public extension Array where Element: SCDataPointProtocol {
         reduce(into: 0.0) { $0 += $1.value }
     }
     
-    func sorted(descending: Bool) -> Self {
+    var defaultTotalString: String {
+        String(format: "%.1f", totaling)
+    }
+    
+    func totalString(with formatter: NumberFormatter? = nil) -> String {
+        formatter?.string(for: totaling) ?? defaultTotalString
+    }
+    
+    func sorted(descending: Bool = true) -> Self {
         sorted(by: descending ? { $0.value > $1.value } : { $0.value < $1.value })
     }
 }
