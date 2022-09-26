@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-extension Color {
+internal extension Color {
     init?(hex: String) {
         let sanitizedHex = hex.trimmingCharacters(in: .whitespaces).replacingOccurrences(of: "#", with: "")
         
@@ -38,9 +38,8 @@ extension Color {
     }
 }
 
-extension Array where Element == Color {
+internal extension Array where Element == Color {
     init(hex: String...) {
         self.init(hex.compactMap { Color(hex: $0) })
-        
     }
 }

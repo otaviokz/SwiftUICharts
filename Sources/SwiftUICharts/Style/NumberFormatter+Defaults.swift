@@ -58,4 +58,12 @@ public extension NumberFormatter {
         decimalSeparator = separator
         return self
     }
+    
+    @inlinable func noFraction() -> NumberFormatter {
+        fixedFraction(digits: 0)
+    }
+    
+    static var intgerValues: NumberFormatter {
+        NumberFormatter().noFraction().grouping()
+    }
 }
