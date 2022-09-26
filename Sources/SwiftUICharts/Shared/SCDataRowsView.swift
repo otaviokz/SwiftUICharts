@@ -7,26 +7,22 @@
 
 import SwiftUI
 
-import SwiftUI
-
 struct SCDataRowsView: View {
-    private let dataPoints: [SCDataPoint]
+    private let data: [SCDataPoint]
     private let formatter: NumberFormatter?
-    private let totaling: CGFloat
     
-    init(_ dataPoints: [SCDataPoint], formatter: NumberFormatter? = nil) {
-        self.dataPoints = dataPoints
+    init(_ data: [SCDataPoint], formatter: NumberFormatter? = nil) {
+        self.data = data
         self.formatter = formatter
-        self.totaling = dataPoints.totaling
     }
     
     var body: some View {
         VStack(spacing: Metric.rowSpacing) {
-            ForEach(dataPoints, id: \.id) { data in
+            ForEach(data, id: \.id) { data in
                 HStack(spacing: 0) {
                     RoundedRectangle(cornerRadius: Metric.rectangle / 4.0)
                         .frame(squareSide: Metric.rectangle)
-                    Spacer().frame(width: Metric.namePadding)
+                    Spacer().frame(width: Metric.titlePadding)
                     Text(data.title)
                         .font(.title3)
                     Spacer().frame(width: Metric.rowSpacing)
@@ -47,7 +43,7 @@ struct SCDataRowsView: View {
 private extension SCDataRowsView {
     struct Metric {
         static var rectangle: CGFloat { 32 }
-        static var namePadding: CGFloat { 12 }
+        static var titlePadding: CGFloat { 12 }
         static var rowSpacing: CGFloat { 6 }
     }
     
@@ -55,7 +51,7 @@ private extension SCDataRowsView {
     var percentageFont: Font { .subheadline.weight(.semibold) }
     
     var fontForValues: Font {
-        let largest = dataPoints[0].value
+        let largest = data[0].value
         if largest <= 999999999 {
             return primaryValueFont
         } else if largest <= 999999999999 {

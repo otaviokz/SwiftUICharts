@@ -20,7 +20,7 @@ public struct SCDataPoint: SCDataPointProtocol {
         self.percentage = percentage
     }
     
-    @inlinable public func withPercentage(_ percentage: Double) -> SCDataPoint {
+    @inlinable func withPercentage(_ percentage: Double) -> SCDataPoint {
         SCDataPoint(title, value: value, color: color, percentage: percentage)
     }
     
@@ -32,7 +32,7 @@ public struct SCDataPoint: SCDataPointProtocol {
         percentage >= threshold ? percentString(with: formatter) : ""
     }
     
-    var defaultPercentSring: String {
+    private var defaultPercentSring: String {
         String(format: "%.1f%%", percentage * 100)
     }
     
@@ -41,7 +41,7 @@ public struct SCDataPoint: SCDataPointProtocol {
     }
 }
 
-public extension Array where Element == SCDataPoint {
+extension Array where Element == SCDataPoint {
     @inlinable func computingPercentages() -> [SCDataPoint] {
         let total = totaling
         return map { $0.withPercentage($0.value / total) }
@@ -61,29 +61,40 @@ public extension Array where Element == SCDataPoint {
 }
 
 extension SCDataPoint {
-    private static var donut: SCPalletes.Graph { .donut }
+    private static var donut: [Color] { SCPalletes.Graph.donut.colors }
+    private static var pie: [Color] { SCPalletes.Graph.pie.colors }
     
     public static var sampleHome: [SCDataPoint] {
         [
-            SCDataPoint("Rent", value: 1200, color: donut.colors[0]),
-            SCDataPoint("Utility", value: 800.12, color: donut.colors[1]),
-            SCDataPoint("Petrol", value: 100, color: donut.colors[2]),
-            SCDataPoint("Council", value: 190, color: donut.colors[3]),
-            SCDataPoint("Groceries", value: 400, color: donut.colors[4]),
-            SCDataPoint("Fun", value: 575, color: donut.colors[5])
+            SCDataPoint("Rent", value: 1200, color: donut[0]),
+            SCDataPoint("Utility", value: 800.12, color: donut[1]),
+            SCDataPoint("Petrol", value: 100, color: donut[2]),
+            SCDataPoint("Council", value: 190, color: donut[3]),
+            SCDataPoint("Groceries", value: 400, color: donut[4]),
+            SCDataPoint("Fun", value: 575, color: donut[5])
         ]
     }
     
     public static var sampleGov: [SCDataPoint] {
         [
-            SCDataPoint("Education", value: 100000000, color: donut.colors[3]),
-            SCDataPoint("Military", value: 750000000, color: donut.colors[1]),
-            SCDataPoint("Transport", value: 250000000, color: donut.colors[2]),
-            SCDataPoint("Health", value: 150000000, color: donut.colors[0])
+            SCDataPoint("Education", value: 100000000, color: donut[3]),
+            SCDataPoint("Military", value: 750000000, color: donut[1]),
+            SCDataPoint("Transport", value: 250000000, color: donut[2]),
+            SCDataPoint("Health", value: 150000000, color: donut[0])
         ]
     }
     
-    func with(_ newColor: Color) -> SCDataPoint {
+    public static var sampleEmployment: [SCDataPoint] {
+        [
+            SCDataPoint("Employed full-time", value: 410000, color: pie[3]),
+            SCDataPoint("Employed part-time", value: 290000, color: pie[1]),
+            SCDataPoint("Self employed", value: 90000, color: pie[2]),
+            SCDataPoint("Student", value: 120000, color: pie[0]),
+            SCDataPoint("Unemployed", value: 70000, color: pie[0])
+        ]
+    }
+    
+    fileprivate func with(_ newColor: Color) -> SCDataPoint {
         SCDataPoint(title, value: value, color: newColor, percentage: percentage)
     }
 }

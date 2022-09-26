@@ -7,13 +7,10 @@
 
 import SwiftUI
 
-public extension GeometryProxy {
+internal extension GeometryProxy {
     var width: CGFloat { size.width }
-    var hRadius: CGFloat { width / 2 }
     var height: CGFloat { size.height }
     var middle: CGPoint { CGPoint(x: width / 2.0, y: height / 2.0) }
-    var middleX: CGFloat { middle.x }
-    var middleY: CGFloat { middle.y }
     var minSize: CGFloat {
         switch (width + height == 0, width * height == 0) {
         case (true, _): return 0
@@ -22,22 +19,15 @@ public extension GeometryProxy {
         }
     }
     var minRadius: CGFloat { minSize / 2 }
-    var maxSize: CGFloat { max(width, height) }
-    var aspectRatio: (CGFloat) { (maxSize / minSize) }
     var centre: CGPoint { size.middle }
     var minCentre: CGPoint { CGPoint(x: minSize / 2, y: minSize / 2) }
-    
     
     func height(in coordinateSpace: CoordinateSpace) -> CGFloat {
         frame(in: coordinateSpace).height
     }
-    
-    func width(in coordinateSpace: CoordinateSpace) -> CGFloat {
-        frame(in: coordinateSpace).width
-    }
 }
 
-private extension CGSize {
+internal extension CGSize {
     static func /(size: CGSize, divisor: CGFloat) -> CGSize {
         CGSize(width: size.width / divisor, height: size.height / divisor)
     }

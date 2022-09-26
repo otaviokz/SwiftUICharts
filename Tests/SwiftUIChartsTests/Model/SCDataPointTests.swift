@@ -49,11 +49,9 @@ class SCDataPointTests: XCTestCase {
         
         // Then
         XCTAssertEqual(uat[0].devaulfValueString, "1200.0")
-        XCTAssertEqual(uat[0].valueString(), uat[0].devaulfValueString)
         XCTAssertEqual(uat[0].valueString(with: gbpFormatter), "£1,200")
         
         XCTAssertEqual(uat[1].devaulfValueString, "800.1")
-        XCTAssertEqual(uat[1].valueString(), uat[1].devaulfValueString)
         XCTAssertEqual(uat[1].valueString(with: gbpFormatter), "£800.12")
     }
     
@@ -63,11 +61,9 @@ class SCDataPointTests: XCTestCase {
         
         // Then
         XCTAssertEqual(uat[0].defaultPercentSring, "36.8%")
-        XCTAssertEqual(uat[0].percentString(), uat[0].defaultPercentSring)
         XCTAssertEqual(uat[0].percentString(with: percentFormatter), "36.75%")
         
         XCTAssertEqual(uat[1].defaultPercentSring, "24.5%")
-        XCTAssertEqual(uat[1].percentString(), uat[1].defaultPercentSring)
         XCTAssertEqual(uat[1].percentString(with: percentFormatter), "24.51%")
     }
     

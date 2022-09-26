@@ -8,43 +8,29 @@
 import SwiftUI
 
 public struct SCDonutChartView: View {
-    private let dataPoints: [SCDataPoint]
+    private let data: [SCDataPoint]
     private let title: String
     private let padding: CGFloat
     private let formatter: NumberFormatter?
     private let lineRatio: CGFloat = 0.2
-    @State private var vHeight: CGFloat = 0
     
-    public init(_ dataPoints: [SCDataPoint], title: String, padding: CGFloat = 16, formatter: NumberFormatter? = nil) {
-        let sorted: [SCDataPoint] = dataPoints.prefix(to: .donut)
-        self.dataPoints = sorted
+    public init(_ data: [SCDataPoint], title: String, padding: CGFloat = 16, formatter: NumberFormatter? = nil) {
+        let sorted: [SCDataPoint] = data.prefix(to: .donut)
+        self.data = sorted
         self.title = title
         self.padding = padding
         self.formatter = formatter
     }
     
     public var body: some View {
-        GeometryReader { proxy in
-            VStack(alignment: .center, spacing: 0) {
-                Spacer()
-                    .frame(height: 12)
-                
-                Text(title)
-                    .font(.title.weight(.semibold))
-                    .foregroundColor(.gray)
-                
-                SCDonutSegmentsView(dataPoints, lineWidth: proxy.minSize * lineRatio, padding: padding, formatter: formatter)
-                    .frame(squareSide: proxy.minSize)
-                
-                SCDataRowsView(dataPoints, formatter: formatter)
-                    .padding(.horizontal, padding * 1.5)
-                    .padding(.bottom, 12)
-            }
-            .frame(width: proxy.minSize)
-            .padding(.vertical, 12)
-            .readHeight(for: $vHeight)
+        SCBasicChartView(title: title) { proxy in
+            SCDonutSegmentsView(data, lineWidth: proxy.minSize * lineRatio, padding: padding, formatter: formatter)
+                .frame(squareSide: proxy.minSize)
+            
+            SCDataRowsView(data, formatter: formatter)
+                .padding(.horizontal, padding * 1.5)
+                .padding(.bottom, 12)
         }
-        .frame(height: vHeight)
     }
 }
 

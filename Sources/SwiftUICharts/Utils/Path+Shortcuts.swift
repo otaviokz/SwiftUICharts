@@ -7,17 +7,24 @@
 
 import SwiftUI
 
-extension Path {
-    typealias AnglePath = (from: Angle, to: Angle)
-    
+internal extension Path {
     mutating func addArc(
         _ center: CGPoint,
         radius: CGFloat,
-        path: AnglePath,
+        arc: Arc,
         clockwise: Bool = false,
         transform: CGAffineTransform = .identity
     ) {
-        addArc(center: center, radius: radius, startAngle: path.from, endAngle:  path.to, clockwise: clockwise, transform: transform)
+        addArc(center: center, radius: radius, startAngle: arc.from, endAngle:  arc.to, clockwise: clockwise, transform: transform)
     }
 }
 
+internal struct Arc {
+    let from: Angle
+    let to: Angle
+    
+    init(_ from: Angle, _ to: Angle) {
+        self.from = from
+        self.to = to
+    }
+}

@@ -15,20 +15,13 @@ public protocol SCDataPointProtocol: Identifiable {
     func valueString(with formatter: NumberFormatter?) -> String
 }
 
-
 public extension SCDataPointProtocol {
-    var devaulfValueString: String {
-        String(format: "%.1f", value)
+    var id: ObjectIdentifier {
+        ObjectIdentifier(NSString(string: "\(title)\(value)\(color)"))
     }
     
     func valueString(with formatter: NumberFormatter? = nil) -> String {
-        formatter?.string(for: value) ?? devaulfValueString
-    }
-}
-
-extension SCDataPointProtocol {
-    public var id: ObjectIdentifier {
-        ObjectIdentifier(NSString(string: "\(title)\(value)\(color)"))
+        formatter?.string(for: value) ?? String(format: "%.1f", value)
     }
 }
 
@@ -37,12 +30,8 @@ public extension Array where Element: SCDataPointProtocol {
         reduce(into: 0.0) { $0 += $1.value }
     }
     
-    var defaultTotalString: String {
-        String(format: "%.1f", totaling)
-    }
-    
     func totalString(with formatter: NumberFormatter? = nil) -> String {
-        formatter?.string(for: totaling) ?? defaultTotalString
+        formatter?.string(for: totaling) ?? String(format: "%.1f", totaling)
     }
     
     func sorted(descending: Bool = true) -> Self {

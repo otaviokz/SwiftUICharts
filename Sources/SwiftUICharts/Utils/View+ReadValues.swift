@@ -7,12 +7,12 @@
 
 import SwiftUI
 
-extension View {
+internal extension View {
     func readHeight(in space: CoordinateSpace = .local, for reader: Binding<CGFloat>) -> some View {
         readHeight(in: space) { reader.wrappedValue = $0 }
     }
     
-    func readHeight(in space: CoordinateSpace = .local, for reader: @escaping (CGFloat) -> Void) -> some View {
+    private func readHeight(in space: CoordinateSpace = .local, for reader: @escaping (CGFloat) -> Void) -> some View {
         background(
             GeometryReader { proxy in
                 Color
@@ -26,7 +26,6 @@ extension View {
                
 private struct HeightKey: PreferenceKey {
     static var defaultValue = CGFloat.zero
-   
     static func reduce(value: inout CGFloat, nextValue: () -> CGFloat) {
         value = nextValue()
     }

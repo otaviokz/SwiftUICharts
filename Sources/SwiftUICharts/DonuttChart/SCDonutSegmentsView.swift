@@ -7,21 +7,14 @@
 
 import SwiftUI
 
-import SwiftUI
-
 struct SCDonutSegmentsView: View {
-    private let dataPoints: [SCDataPoint]
+    private let data: [SCDataPoint]
     private let lineWidth: CGFloat
     private let padding: CGFloat
     private let formatter: NumberFormatter?
     
-    init(
-        _ dataPoints: [SCDataPoint],
-        lineWidth: CGFloat,
-        padding: CGFloat,
-        formatter: NumberFormatter? = nil
-    ) {
-        self.dataPoints = dataPoints
+    init(_ data: [SCDataPoint], lineWidth: CGFloat, padding: CGFloat, formatter: NumberFormatter? = nil) {
+        self.data = data
         self.lineWidth = lineWidth
         self.padding = padding
         self.formatter = formatter
@@ -30,29 +23,14 @@ struct SCDonutSegmentsView: View {
     var body: some View {
         GeometryReader { proxy in
             ZStack {
-                ForEach(segments(proxy.minRadius), id: \.id) { segment in
-                    Path { path in
-                        path.addArc(proxy.minCentre, radius: segment.radius, path: segment.path)
-                    }
-                    .stroke(segment.color, lineWidth: segment.width)
-                }
-                
-                ForEach(segments(proxy.minRadius), id: \.id) { segment in
-                    HStack {
-                        Text(segment.dataPoint.chartPercentString(with: .percent))
-                            .font(.callout)
-                            .foregroundColor(.white)
-                            .minimumScaleFactor(0.5)
-                            .lineLimit(1)
-                            .frame(maxWidth: lineWidth * 0.6)
-                    }
-                    .position(segment.labelPosition(from: proxy.middle))
+                ForEach(data.segments(proxy, width: lineWidth, padding: padding), id: \.id) { segment in
+                    SCDonutSegmentView(segment)
                 }
                 
                 VStack(alignment: .center, spacing: 0) {
                     Text("Total:")
                         .font(.title.weight(.bold))
-                    Text(dataPoints.totalString(with: formatter))
+                    Text(data.totalString(with: formatter))
                         .font(.title)
                 }
                 .lineLimit(1)
@@ -63,10 +41,6 @@ struct SCDonutSegmentsView: View {
             .frame(width: proxy.minSize, height: proxy.minSize)
         }
     }
-    
-    func segments(_ radius: CGFloat) -> [SCDonutSegment] {
-        dataPoints.asDonutSegments(radius, width: lineWidth, padding: padding)
-    }
 }
 
 struct SCDonutSegmentsView_Previews: PreviewProvider {
@@ -76,15 +50,13 @@ struct SCDonutSegmentsView_Previews: PreviewProvider {
 }
 
 private extension Array where Element == SCDataPoint {
-    func asDonutSegments(_ radius: CGFloat, width: CGFloat, padding: CGFloat) -> [SCDonutSegment] {
-        var startAngle = Angle.degrees(-90)
+    func segments(_ proxy: GeometryProxy, width: CGFloat, padding: CGFloat) -> [SCDonutSegment] {
+        var from = Angle.degrees(-90)
 
         return map { data in
-            let endAngle = startAngle + data.delta
-            let path = (startAngle, endAngle)
-            startAngle = endAngle
-        
-            return SCDonutSegment(data, radius: radius, path: path, width: width, padding: padding)
+            let arc = Arc(from, from + data.delta)
+            from = arc.to
+            return SCDonutSegment(data, radius: proxy.minRadius, arc: arc, width: width, padding: padding)
         }
     }
 }
