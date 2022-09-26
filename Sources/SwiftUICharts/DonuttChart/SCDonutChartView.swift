@@ -11,23 +11,21 @@ public struct SCDonutChartView: View {
     private let data: [SCDataPoint]
     private let title: String
     private let padding: CGFloat
-    private let formatter: NumberFormatter?
     private let lineRatio: CGFloat = 0.2
     
-    public init(_ data: [SCDataPoint], title: String, padding: CGFloat = 16, formatter: NumberFormatter? = nil) {
+    public init(_ data: [SCDataPoint], title: String, padding: CGFloat = 16) {
         let sorted: [SCDataPoint] = data.prefix(to: .donut)
         self.data = sorted
         self.title = title
         self.padding = padding
-        self.formatter = formatter
     }
     
     public var body: some View {
         SCBasicChartView(title: title) { proxy in
-            SCDonutSegmentsView(data, lineWidth: proxy.minSize * lineRatio, padding: padding, formatter: formatter)
+            SCDonutSegmentsView(data, lineWidth: proxy.minSize * lineRatio, padding: padding)
                 .frame(squareSide: proxy.minSize)
             
-            SCDataRowsView(data, formatter: formatter)
+            SCDataRowsView(data)
                 .padding(.horizontal, padding * 1.5)
                 .padding(.bottom, 12)
         }

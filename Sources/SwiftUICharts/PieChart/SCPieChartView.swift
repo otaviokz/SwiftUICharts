@@ -8,20 +8,19 @@
 import SwiftUI
 
 public struct SCPieChartView: View {
+    @Environment(\.numberFormattterEnvironmentValue) var formatter: NumberFormatter
     private let data: [SCDataPoint]
     private let title: String
     private let padding: CGFloat
     let rFraction: CGFloat
     let wFraction: CGFloat
-    private let formatter: NumberFormatter?
     
     public init(
         _ data: [SCDataPoint],
         title: String,
         padding: CGFloat = 16,
         wFraction: CGFloat = 0.75,
-        rFraction: CGFloat = 0.60,
-        formatter: NumberFormatter? = nil
+        rFraction: CGFloat = 0.60
     ) {
         let sorted: [SCDataPoint] = data.prefix(to: .pie)
         self.data = sorted
@@ -29,12 +28,11 @@ public struct SCPieChartView: View {
         self.padding = padding
         self.wFraction = wFraction
         self.rFraction = rFraction
-        self.formatter = formatter
     }
     
     public var body: some View {
         SCBasicChartView(title: title) { proxy in
-            SCPieSlicesView(data, padding: padding, formatter: formatter)
+            SCPieSlicesView(data, padding: padding)
                 .frame(squareSide: proxy.minSize)
             HStack(alignment: .center, spacing: 16) {
                 Group {
@@ -50,7 +48,7 @@ public struct SCPieChartView: View {
             .frame(width: proxy.minSize - 2 * padding, height: 32)
             .padding(.bottom, padding)
             
-            SCDataRowsView(data, formatter: formatter)
+            SCDataRowsView(data)
                 .padding(.horizontal, padding * 1.5)
                 .padding(.bottom, 12)
         }
@@ -59,6 +57,7 @@ public struct SCPieChartView: View {
 
 struct SCPieChartView_Previews: PreviewProvider {
     static var previews: some View {
-        SCPieChartView(SCDataPoint.sampleEmployment, title: "Employment status distributions", formatter: NumberFormatter.intgerValues)
+        SCPieChartView(SCDataPoint.sampleEmployment, title: "Employment status distributions")
+            .environment(\.numberFormattterEnvironmentValue, .intgerValues)
     }
 }

@@ -13,7 +13,6 @@ struct SCPieSlicesView: View {
     private let padding: CGFloat
     private let rFraction: CGFloat
     private let wFraction: CGFloat
-    private let formatter: NumberFormatter?
     private var backgroundColor: Color {
         colorScheme == .dark ? .white : .black
     }
@@ -22,14 +21,12 @@ struct SCPieSlicesView: View {
         _ data: [SCDataPoint],
         padding: CGFloat,
         wFraction: CGFloat = 0.75,
-        rFraction: CGFloat = 0.5,
-        formatter: NumberFormatter? = nil
+        rFraction: CGFloat = 0.5
     ) {
         self.data = data
         self.padding = padding
         self.wFraction = wFraction
         self.rFraction = rFraction
-        self.formatter = formatter
     }
     
     var body: some View {
