@@ -8,16 +8,15 @@
 import SwiftUI
 
 struct SCDonutSegmentsView: View {
+    @Environment(\.numberFormattterEnvironmentValue) var formatter: NumberFormatter
     private let data: [SCDataPoint]
     private let lineWidth: CGFloat
     private let padding: CGFloat
-    private let formatter: NumberFormatter?
     
-    init(_ data: [SCDataPoint], lineWidth: CGFloat, padding: CGFloat, formatter: NumberFormatter? = nil) {
+    init(_ data: [SCDataPoint], lineWidth: CGFloat, padding: CGFloat) {
         self.data = data
         self.lineWidth = lineWidth
         self.padding = padding
-        self.formatter = formatter
     }
     
     var body: some View {

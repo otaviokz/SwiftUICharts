@@ -8,12 +8,11 @@
 import SwiftUI
 
 struct SCDataRowsView: View {
+    @Environment(\.numberFormattterEnvironmentValue) var formatter: NumberFormatter
     private let data: [SCDataPoint]
-    private let formatter: NumberFormatter?
     
-    init(_ data: [SCDataPoint], formatter: NumberFormatter? = nil) {
+    init(_ data: [SCDataPoint]) {
         self.data = data
-        self.formatter = formatter
     }
     
     var body: some View {
