@@ -22,9 +22,11 @@ class SCDataPointTests: XCTestCase {
         XCTAssertEqual(uat[5].title, "Fun")
         XCTAssertEqual(uat[5].value, 575)
         XCTAssertEqual(uat[5].color, Color(hex: "9e9ea2"))
+        
+        XCTAssertEqual(uat.totalString(with: .gbp), "£3,265.12")
     }
 
-    func testPercentages() throws {
+    func testRowPercentages() throws {
         // Given
         var uat = home
         
@@ -43,15 +45,31 @@ class SCDataPointTests: XCTestCase {
         }
     }
     
+    func testChartPercentages() throws {
+        // Given
+        var uat = employment
+        
+        // Then
+        XCTAssertEqual(uat.totaling, Double(980000))
+        
+        // When
+        uat = uat.prefix(to: .pie)
+        let percentValues: [String] = uat.map { $0.chartPercentString(threshold: 0.1) }
+        let expectedValues = [41.8, 29.6, 12.2]
+        let tuples = zip(percentValues, expectedValues).map { ($0, $1) }
+        
+        // Then
+        for (result, expected) in tuples {
+            XCTAssertEqual(result, "\(expected)%")
+        }
+    }
+    
     func testValueFormatting() throws {
         // Given
         let uat = home.computingPercentages()
         
         // Then
-        XCTAssertEqual(uat[0].devaulfValueString, "1200.0")
         XCTAssertEqual(uat[0].valueString(with: gbpFormatter), "£1,200")
-        
-        XCTAssertEqual(uat[1].devaulfValueString, "800.1")
         XCTAssertEqual(uat[1].valueString(with: gbpFormatter), "£800.12")
     }
     
@@ -60,10 +78,7 @@ class SCDataPointTests: XCTestCase {
         let uat = home.computingPercentages()
         
         // Then
-        XCTAssertEqual(uat[0].defaultPercentSring, "36.8%")
         XCTAssertEqual(uat[0].percentString(with: percentFormatter), "36.75%")
-        
-        XCTAssertEqual(uat[1].defaultPercentSring, "24.5%")
         XCTAssertEqual(uat[1].percentString(with: percentFormatter), "24.51%")
     }
     
@@ -86,4 +101,5 @@ class SCDataPointTests: XCTestCase {
     }()
     
     private let home = SCDataPoint.sampleHome
+    private let employment = SCDataPoint.sampleEmployment
 }
