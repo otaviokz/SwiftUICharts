@@ -8,9 +8,8 @@
 import SwiftUI
 
 internal protocol SCCircleChartPart: Identifiable {
-    associatedtype DataPoint: SCDataPointProtocol
-    
-    var data: DataPoint { get }
+    var data: SCDataPoint { get }
+    var padding: CGFloat { get }
     var title: String { get }
     var value: Double { get }
     var color: Color { get }
@@ -28,6 +27,7 @@ internal extension SCCircleChartPart {
     var value: Double { data.value }
     var color: Color { data.color }
     var id: ObjectIdentifier { idString.asObjectIdentifier }
+    var baseIsString: String { "\(data.idString)\(radius)\(padding)\(midRadian)" }
     
     func labelPosition(from centre: CGPoint) -> CGPoint {
         centre * CGPoint(1 + xyFix * cos(midRadian), 1 - xyFix * sin(midRadian))

@@ -12,33 +12,34 @@ import SwiftUI
 class SCDonutSegmentTests: XCTestCase {
     func testBasics() throws {
         // Given
-        let segmet1 = segment(radius: 240, arc: .degreesTo(-90), width: 80, padding: 12)
+        let segment1 = segment(100, r: 240, arc: .degreesTo(-90), w: 80, p: 12)
         var middle = CGPoint(240, 240)
         
         // Then
-        XCTAssertEqual(segmet1.midRadian, 0.78, accuracy: 0.05)
-        XCTAssertEqual(segmet1.radius, 188)
-        XCTAssertEqual(segmet1.labelPosition(from: middle).x, 360.49, accuracy: 0.05)
-        XCTAssertEqual(segmet1.labelPosition(from: middle).y, 119.5, accuracy: 0.05)
-        XCTAssertEqual(segmet1.title, "aSegmentTitle")
-        XCTAssertEqual(segmet1.color, .red)
-        XCTAssertEqual(segmet1.value, 100.0)
-        XCTAssertEqual(segmet1.idString, "aSegmentTitle100.0red80.012.00.7853981633974483")
+        XCTAssertEqual(segment1.midRadian, 0.78, accuracy: 0.05)
+        XCTAssertEqual(segment1.radius, 188)
+        XCTAssertEqual(segment1.labelPosition(from: middle).x, 360.49, accuracy: 0.05)
+        XCTAssertEqual(segment1.labelPosition(from: middle).y, 119.5, accuracy: 0.05)
+        XCTAssertEqual(segment1.title, "aSegment")
+        XCTAssertEqual(segment1.color, .red)
+        XCTAssertEqual(segment1.value, 100.0)
+        XCTAssertEqual(segment1.idString, "aSegment100.0red188.012.00.785398163397448380.0")
         
         // Given
-        let segmet2 = segment(radius: 280, arc: .degrees(-90, -180), width: 80, padding: 12)
+        let segment2 = segment(100, r: 280, arc: .degrees(-90, -145), w: 80, p: 8)
         middle = CGPoint(280, 280)
         
         // Then
-        XCTAssertEqual(segmet2.midRadian, 2.35, accuracy: 0.05)
-        XCTAssertEqual(segmet2.radius, 228)
-        XCTAssertEqual(segmet2.labelPosition(from: middle).x, 139.42, accuracy: 0.05)
-        XCTAssertEqual(segmet2.labelPosition(from: middle).y, 139.42, accuracy: 0.05)
+        XCTAssertEqual(segment2.midRadian, 2.05, accuracy: 0.05)
+        XCTAssertEqual(segment2.radius, 232)
+        XCTAssertEqual(segment2.labelPosition(from: middle).x, 188.2, accuracy: 0.05)
+        XCTAssertEqual(segment2.labelPosition(from: middle).y, 103.66, accuracy: 0.05)
+        XCTAssertEqual(segment2.idString, "aSegment100.0red232.08.02.050761871093337580.0")
     }
 }
 
 private extension SCDonutSegmentTests {
-    func segment(_ title: String = "aSegmentTitle", value: Double = 100, radius: CGFloat, arc: Arc, width: CGFloat, padding: CGFloat) -> SCDonutSegment {
-        SCDonutSegment(SCDataPoint(title, value: value, color: .red), radius: radius, arc: arc, width: width, padding: padding)
+    func segment(_ v: Double, r: CGFloat, arc: Arc, w: CGFloat, p: CGFloat) -> SCDonutSegment {
+        SCDonutSegment(SCDataPoint("aSegment", value: v, color: .red), radius: r, arc: arc, width: w, padding: p)
     }
 }
