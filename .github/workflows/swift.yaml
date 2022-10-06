@@ -1,0 +1,9 @@
+steps:
+  - uses: actions/checkout@v3
+  - uses: fwal/setup-swift@2040b795e5c453c3a05fcb8316496afc8a74f192
+    with:
+      swift-version: "5.3.3"
+  - name: Build
+    run: swift build
+  - name: Run tests
+    run: swift test
