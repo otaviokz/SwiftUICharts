@@ -23,8 +23,18 @@ internal struct Arc {
     let from: Angle
     let to: Angle
     
-    init(_ from: Angle, _ to: Angle) {
+    public init(_ from: Angle, _ to: Angle) {
         self.from = from
         self.to = to
     }
+    
+    public static func degrees(_ from: Double, _ to: Double) -> Arc {
+        Arc(.degrees(from), .degrees(to))
+    }
+    
+    public static func degreesTo(_ to: Double) -> Arc {
+        .degrees(0, to)
+    }
+    
+    var halfWayRad: Double { (from + to).radians / -2 }
 }

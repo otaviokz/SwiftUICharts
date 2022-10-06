@@ -12,18 +12,18 @@ import SwiftUI
 class SCDataPointTests: XCTestCase {
     func testBasics() throws {
         // Given
-        let uat = home
+        let uat = SCDataPoint.sampleGov.prefix(to: .donut)
         
         // Then
-        XCTAssertEqual(uat[0].title, "Rent")
-        XCTAssertEqual(uat[0].value, 1200)
+        XCTAssertEqual(uat[0].title, "Military")
+        XCTAssertEqual(uat[0].value, 750000000)
         XCTAssertEqual(uat[0].color, Color(hex: "4770b3"))
         
-        XCTAssertEqual(uat[5].title, "Fun")
-        XCTAssertEqual(uat[5].value, 575)
-        XCTAssertEqual(uat[5].color, Color(hex: "9e9ea2"))
+        XCTAssertEqual(uat[3].title, "Education")
+        XCTAssertEqual(uat[3].value, 100000000)
+        XCTAssertEqual(uat[3].color, Color(hex: "50aed3"))
         
-        XCTAssertEqual(uat.totalString(with: .gbp), "£3,265.12")
+        XCTAssertEqual(uat.totalString(with: .usd), "$1,250,000,000")
     }
 
     func testRowPercentages() throws {
@@ -54,13 +54,13 @@ class SCDataPointTests: XCTestCase {
         
         // When
         uat = uat.prefix(to: .pie)
-        let percentValues: [String] = uat.map { $0.chartPercentString(threshold: 0.1) }
+        let percentValues: [String] = uat.map { $0.chartPercentString(with: .percent, threshold: 0.1) }
         let expectedValues = [41.8, 29.6, 12.2]
         let tuples = zip(percentValues, expectedValues).map { ($0, $1) }
         
         // Then
         for (result, expected) in tuples {
-            XCTAssertEqual(result, "\(expected)%")
+            XCTAssertEqual(result, "\(expected)\u{fe6a}")
         }
     }
     
