@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-protocol SCCircleChartPart: Identifiable {
+internal protocol SCCircleChartPart: Identifiable {
     associatedtype DataPoint: SCDataPointProtocol
     
     var data: DataPoint { get }
@@ -15,29 +15,21 @@ protocol SCCircleChartPart: Identifiable {
     var value: Double { get }
     var color: Color { get }
     var arc: Arc { get }
-    var arcRad: Double { get }
-    var arcRadius: CGFloat { get }
-    var arcFraction: Double { get }
+    var midRadian: Double { get }
+    var radius: CGFloat { get }
+    var xyFix: Double { get }
     var idString: String { get }
     
     func labelPosition(from centre: CGPoint) -> CGPoint
 }
 
-extension SCCircleChartPart {
+internal extension SCCircleChartPart {
     var title: String { data.title }
     var value: Double { data.value }
+    var color: Color { data.color }
+    var id: ObjectIdentifier { idString.asObjectIdentifier }
     
     func labelPosition(from centre: CGPoint) -> CGPoint {
-        centre * CGPoint(x: 1 + arcFraction * cos(arcRad), y: 1 - arcFraction * sin(arcRad))
+        centre * CGPoint(1 + xyFix * cos(midRadian), 1 - xyFix * sin(midRadian))
     }
-    
-    var color: Color { data.color }
-    
-    var id: ObjectIdentifier {
-        ObjectIdentifier(NSString(string: idString))
-    }
-}
-
-extension Arc {
-    var halfPathRadians: Double { (from + to).radians / -2 }
 }

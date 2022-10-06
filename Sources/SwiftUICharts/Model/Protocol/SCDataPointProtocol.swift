@@ -11,15 +11,15 @@ public protocol SCDataPointProtocol: Identifiable {
     var title: String { get }
     var value: Double { get }
     var color: Color { get }
- 
+    var idString: String { get }
+    
     func valueString(with formatter: NumberFormatter?) -> String
 }
 
 public extension SCDataPointProtocol {
-    var id: ObjectIdentifier {
-        ObjectIdentifier(NSString(string: "\(title)\(value)\(color)"))
-    }
-    
+    var idString: String { "\(title)\(value)\(color)" }
+    var id: ObjectIdentifier { idString.asObjectIdentifier }
+
     func valueString(with formatter: NumberFormatter? = nil) -> String {
         formatter?.string(for: value) ?? String(format: "%.1f", value)
     }

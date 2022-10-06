@@ -19,7 +19,7 @@ struct PieSliceView: View  {
             ZStack {
                 Path { path in
                     path.move(to: proxy.middle)
-                    path.addArc(proxy.middle, radius: slice.arcRadius, arc: slice.arc)
+                    path.addArc(proxy.middle, radius: slice.radius, arc: slice.arc)
                 }
                 .fill(slice.data.color)
             }

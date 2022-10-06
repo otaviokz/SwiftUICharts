@@ -10,7 +10,7 @@ import SwiftUI
 internal extension GeometryProxy {
     var width: CGFloat { size.width }
     var height: CGFloat { size.height }
-    var middle: CGPoint { CGPoint(x: width / 2.0, y: height / 2.0) }
+    var middle: CGPoint { CGPoint(width / 2.0, height / 2.0) }
     var minSize: CGFloat {
         switch (width + height == 0, width * height == 0) {
         case (true, _): return 0
@@ -20,7 +20,7 @@ internal extension GeometryProxy {
     }
     var minRadius: CGFloat { minSize / 2 }
     var centre: CGPoint { size.middle }
-    var minCentre: CGPoint { CGPoint(x: minSize / 2, y: minSize / 2) }
+    var minCentre: CGPoint { CGPoint(minSize / 2, minSize / 2) }
     
     func height(in coordinateSpace: CoordinateSpace) -> CGFloat {
         frame(in: coordinateSpace).height
@@ -37,7 +37,7 @@ internal extension CGSize {
     }
     
     private var toPoint: CGPoint {
-        CGPoint(x: width, y: height)
+        CGPoint(width, height)
     }
 }
 

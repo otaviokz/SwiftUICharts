@@ -18,7 +18,7 @@ struct SCDonutSegmentView: View {
         GeometryReader { proxy in
             ZStack {
                 Path { path in
-                    path.addArc(proxy.minCentre, radius: segment.arcRadius, arc: segment.arc)
+                    path.addArc(proxy.minCentre, radius: segment.radius, arc: segment.arc)
                 }
                 .stroke(segment.color, lineWidth: segment.width)
                 

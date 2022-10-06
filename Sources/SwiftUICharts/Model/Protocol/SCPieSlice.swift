@@ -7,24 +7,24 @@
 
 import SwiftUI
 
-struct SCPieSlice: SCCircleChartPart {
+internal struct SCPieSlice: SCCircleChartPart {
     let data: SCDataPoint
     private let padding: CGFloat
     let arc: Arc
-    let arcRad: Double
+    let midRadian: Double
     private var sliceRadius: CGFloat = 0
-    private(set) var arcRadius: CGFloat {
+    private(set) var radius: CGFloat {
         get { sliceRadius }
         set { sliceRadius = max(0, newValue - padding) }
     }
-    let arcFraction: Double = 0.875
-    var idString: String { "\(data.id.hashValue)\(padding)\(arcRad)" }
+    let xyFix: Double = 0.875
+    var idString: String { "\(data.idString)\(padding)\(midRadian)" }
     
     init(_ data: SCDataPoint, radius: CGFloat, arc: Arc, padding: CGFloat) {
         self.data = data
         self.arc = arc
         self.padding = padding
-        self.arcRad = arc.halfPathRadians
-        self.arcRadius = radius
+        self.midRadian = arc.halfWayRad
+        self.radius = radius
     }
 }
