@@ -9,7 +9,7 @@ import SwiftUI
 
 internal struct SCPieSlice: SCCircleChartPart {
     let data: SCDataPoint
-    private let padding: CGFloat
+    let padding: CGFloat
     let arc: Arc
     let midRadian: Double
     private var sliceRadius: CGFloat = 0
@@ -18,7 +18,7 @@ internal struct SCPieSlice: SCCircleChartPart {
         set { sliceRadius = max(0, newValue - padding) }
     }
     let xyFix: Double = 0.875
-    var idString: String { "\(data.idString)\(padding)\(midRadian)" }
+    var idString: String { baseIsString }
     
     init(_ data: SCDataPoint, radius: CGFloat, arc: Arc, padding: CGFloat) {
         self.data = data

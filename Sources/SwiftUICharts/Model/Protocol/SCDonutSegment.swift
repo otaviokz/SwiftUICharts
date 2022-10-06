@@ -9,7 +9,7 @@ import SwiftUI
 
 internal struct SCDonutSegment: SCCircleChartPart {
     let data: SCDataPoint
-    private let padding: CGFloat
+    let padding: CGFloat
     let width: CGFloat
     let arc: Arc
     let midRadian: Double
@@ -19,8 +19,7 @@ internal struct SCDonutSegment: SCCircleChartPart {
         set { donutRadius = max(0, newValue - (width / 2) - padding) }
     }
     let xyFix: Double = 0.71
-    var idString: String { "\(data.idString)\(width)\(padding)\(midRadian)" }
-    
+    var idString: String { "\(baseIsString)\(width)" }
     init(_ data: SCDataPoint, radius: CGFloat, arc: Arc, width: CGFloat, padding: CGFloat) {
         self.data = data
         self.width = width
