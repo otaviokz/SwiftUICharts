@@ -10,30 +10,24 @@ import SwiftUI
 public struct SCDonutChartView: View {
     private let data: [SCDataPoint]
     private let title: String
-    private let padding: CGFloat
-    private let lineRatio: CGFloat = 0.2
     
-    public init(_ data: [SCDataPoint], title: String, padding: CGFloat = 16) {
+    public init(_ data: [SCDataPoint], title: String) {
         let sorted: [SCDataPoint] = data.prefix(to: .donut)
         self.data = sorted
         self.title = title
-        self.padding = padding
     }
     
     public var body: some View {
-        SCBasicChartView(title: title) { proxy in
-            SCDonutSegmentsView(data, lineWidth: proxy.minSize * lineRatio, padding: padding)
+        SCBasicChartView(data, title: title) { proxy in
+            SCDonutSegmentsView(data, lineWidth: proxy.minSize * Metric.lineRatio, padding: Metric.padding)
                 .frame(squareSide: proxy.minSize)
-            
-            SCDataRowsView(data)
-                .padding(.horizontal, padding * 1.5)
-                .padding(.bottom, 12)
         }
     }
 }
 
-struct SCDonutChartView_Previews: PreviewProvider {
-    static var previews: some View {
-        SCDonutChartView(SCDataPoint.sampleHome, title: "Home Budget")
+private extension SCDonutChartView {
+    struct Metric {
+        static var padding: CGFloat { 16 }
+        static var lineRatio: CGFloat { 0.2 }
     }
 }

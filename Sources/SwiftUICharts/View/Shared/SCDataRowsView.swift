@@ -16,22 +16,25 @@ struct SCDataRowsView: View {
     }
     
     var body: some View {
-        VStack(spacing: Metric.rowSpacing) {
+        VStack(spacing: Metric.spacing) {
             ForEach(data, id: \.id) { data in
                 HStack(spacing: 0) {
                     RoundedRectangle(cornerRadius: Metric.rectangle / 4.0)
                         .frame(squareSide: Metric.rectangle)
-                    Spacer().frame(width: Metric.titlePadding)
+                    Spacer()
+                        .frame(width: Metric.titlePadding)
                     Text(data.title)
                         .font(.title3)
-                    Spacer().frame(width: Metric.rowSpacing)
+                    Spacer()
+                        .frame(width: Metric.spacing)
                     Spacer()
                     VStack(alignment: .trailing, spacing: 0) {
                         Text(data.valueString(with: formatter))
                             .font(fontForValues)
                         Text(data.percentString(with: .percent))
                             .font(percentageFont)
-                    }.lineLimit(1)
+                    }
+                    .lineLimit(1)
                 }
                 .foregroundColor(data.color)
             }
@@ -43,7 +46,7 @@ private extension SCDataRowsView {
     struct Metric {
         static var rectangle: CGFloat { 32 }
         static var titlePadding: CGFloat { 12 }
-        static var rowSpacing: CGFloat { 6 }
+        static var spacing: CGFloat { 6 }
     }
     
     var primaryValueFont: Font { .headline.weight(.medium) }
@@ -60,11 +63,5 @@ private extension SCDataRowsView {
         } else {
             return .callout.weight(.regular)
         }
-    }
-}
-
-struct SwiftUIView_Previews: PreviewProvider {
-    static var previews: some View {
-        SCDataRowsView(SCDataPoint.sampleHome)
     }
 }

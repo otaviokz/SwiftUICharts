@@ -11,22 +11,13 @@ struct SCPieSlicesView: View {
     @Environment(\.colorScheme) private var colorScheme: ColorScheme
     private let data: [SCDataPoint]
     private let padding: CGFloat
-    private let rFraction: CGFloat
-    private let wFraction: CGFloat
     private var backgroundColor: Color {
         colorScheme == .dark ? .white : .black
     }
     
-    init(
-        _ data: [SCDataPoint],
-        padding: CGFloat,
-        wFraction: CGFloat = 0.75,
-        rFraction: CGFloat = 0.5
-    ) {
+    init(_ data: [SCDataPoint], padding: CGFloat) {
         self.data = data
         self.padding = padding
-        self.wFraction = wFraction
-        self.rFraction = rFraction
     }
     
     var body: some View {
@@ -34,11 +25,17 @@ struct SCPieSlicesView: View {
             ZStack {
                 ForEach(data.asPieSlices(proxy.minRadius, padding: padding), id: \.id) { slice in
                     PieSliceView(slice)
+                        .frame(squareSide: proxy.minSize * Metric.sizeRatio)
                 }
-                .frame(width: wFraction * proxy.minSize, height: wFraction * proxy.minSize)
             }
             .frame(squareSide: proxy.minSize)
         }
+    }
+}
+
+private extension SCPieSlicesView {
+    struct Metric {
+        static var sizeRatio: CGFloat { 0.6 }
     }
 }
 

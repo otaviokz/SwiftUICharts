@@ -27,9 +27,15 @@ struct SCDonutSegmentView: View {
                     .foregroundColor(.white)
                     .minimumScaleFactor(0.5)
                     .lineLimit(1)
-                    .frame(maxWidth: segment.width * 0.6)
+                    .frame(maxWidth: segment.width * Metric.widthRatio)
                     .position(segment.labelPosition(from: proxy.middle))
             }
         }
+    }
+}
+
+private extension SCDonutSegmentView {
+    struct Metric {
+        static var widthRatio: CGFloat { 0.6 }
     }
 }

@@ -33,7 +33,7 @@ public struct SCDataPoint: SCDataPointProtocol {
     }
     
     private var defaultPercentSring: String {
-        String(format: "%.1f%%", percentage * 100)
+        String(format: "%.1f\u{fe6a}", percentage * 100)
     }
     
     var delta: Angle {
