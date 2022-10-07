@@ -8,11 +8,13 @@
 import SwiftUI
 
 struct SCBasicChartView<Content>: View where Content: View {
+    private let data: [SCDataPoint]
     private let title: String
     @State private var stackHeight: CGFloat = 0
     @ViewBuilder private let content: (GeometryProxy) -> Content
     
-    init(title: String, @ViewBuilder content: @escaping (GeometryProxy) -> Content) {
+    init(_ data: [SCDataPoint], title: String, @ViewBuilder content: @escaping (GeometryProxy) -> Content) {
+        self.data = data
         self.title = title
         self.content = content
     }
@@ -28,6 +30,10 @@ struct SCBasicChartView<Content>: View where Content: View {
                     .multilineTextAlignment(.center)
                     .aspectRatio(1, contentMode: .fill)
                 content(proxy)
+                
+                SCDataRowsView(data)
+                    .padding(.horizontal, Metric.horizontalPadding)
+                    .padding(.bottom, Metric.rowsBottom)
             }
             .frame(width: proxy.minSize)
             .padding(.vertical, Metric.padding)
@@ -40,5 +46,9 @@ struct SCBasicChartView<Content>: View where Content: View {
 private extension SCBasicChartView {
     struct Metric {
         static var padding: CGFloat { 12 }
+        static var bottom: CGFloat { 12 }
+        static var rowsBottom: CGFloat { 12 }
+        static var rowsHorizontal: CGFloat { 16 }
+        static var horizontalPadding: CGFloat { rowsHorizontal * 1.5 }
     }
 }

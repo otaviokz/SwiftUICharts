@@ -24,11 +24,15 @@ class SCDataPointTests: XCTestCase {
         XCTAssertEqual(uat[3].color, Color(hex: "50aed3"))
         
         XCTAssertEqual(uat.totalString(with: .usd), "$1,250,000,000")
+        XCTAssertEqual(uat.totalString(), "1250000000.0")
+        XCTAssertEqual(uat.totalString(with: .intgerValues), "1,250,000,000")
+        
+        XCTAssertEqual(uat[0].id, SCDataPoint("Military", value: 750000000, color: Color(hex: "4770b3")!).id)
     }
 
     func testRowPercentages() throws {
         // Given
-        var uat = home
+        var uat = SCDataPoint.sampleHome
         
         // Then
         XCTAssertEqual(uat.totaling, Double(3265.12))
@@ -47,7 +51,7 @@ class SCDataPointTests: XCTestCase {
     
     func testChartPercentages() throws {
         // Given
-        var uat = employment
+        var uat = SCDataPoint.sampleEmployment
         
         // Then
         XCTAssertEqual(uat.totaling, Double(980000))
@@ -66,40 +70,29 @@ class SCDataPointTests: XCTestCase {
     
     func testValueFormatting() throws {
         // Given
-        let uat = home.computingPercentages()
+        let uat = SCDataPoint.sampleHome.prefix(to: .donut, descending: false)
         
         // Then
-        XCTAssertEqual(uat[0].valueString(with: gbpFormatter), "£1,200")
-        XCTAssertEqual(uat[1].valueString(with: gbpFormatter), "£800.12")
+        XCTAssertEqual(uat[0].valueString(with: .gbp), "£100")
+        XCTAssertEqual(uat[1].valueString(with: .gbp), "£190")
+        XCTAssertEqual(uat[1].valueString(), "190.0")
     }
     
     func testPercentageFormatting() throws {
         // Given
-        let uat = home.computingPercentages()
+        let uat = SCDataPoint.sampleHome.computingPercentages()
         
         // Then
-        XCTAssertEqual(uat[0].percentString(with: percentFormatter), "36.75%")
-        XCTAssertEqual(uat[1].percentString(with: percentFormatter), "24.51%")
+        XCTAssertEqual(uat[0].percentString(with: .percent), "36.8\u{fe6a}")
+        XCTAssertEqual(uat[1].percentString(with: .percent), "24.5\u{fe6a}")
+        XCTAssertEqual(uat[1].percentString(), "24.5\u{fe6a}")
     }
     
-    
-    private lazy var gbpFormatter: NumberFormatter = {
-        let formatter = NumberFormatter()
-        formatter.numberStyle = .currency
-        formatter.currencyCode = "GBP"
-        formatter.minimumFractionDigits = 0
-        formatter.maximumFractionDigits = 2
-        return formatter
-    }()
-    
-    private lazy var percentFormatter: NumberFormatter = {
-        let formatter = NumberFormatter()
-        formatter.numberStyle = .percent
-        formatter.minimumFractionDigits = 0
-        formatter.maximumFractionDigits = 2
-        return formatter
-    }()
-    
-    private let home = SCDataPoint.sampleHome
-    private let employment = SCDataPoint.sampleEmployment
+    func testAngles() {
+        // Given
+        let uat = SCDataPoint.sampleHome.computingPercentages()
+        
+        // Then
+        XCTAssertEqual(uat[0].delta.radians, 2.3, accuracy: 0.1)
+    }
 }

@@ -18,22 +18,16 @@ public struct SCDonutChartView: View {
     }
     
     public var body: some View {
-        SCBasicChartView(title: title) { proxy in
+        SCBasicChartView(data, title: title) { proxy in
             SCDonutSegmentsView(data, lineWidth: proxy.minSize * Metric.lineRatio, padding: Metric.padding)
                 .frame(squareSide: proxy.minSize)
-            
-            SCDataRowsView(data)
-                .padding(.horizontal, Metric.horizontalPadding)
-                .padding(.bottom, Metric.bottom)
         }
     }
 }
 
 private extension SCDonutChartView {
     struct Metric {
-        static var bottom: CGFloat { 12 }
         static var padding: CGFloat { 16 }
-        static var horizontalPadding: CGFloat { padding * 1.5 }
         static var lineRatio: CGFloat { 0.2 }
     }
 }
