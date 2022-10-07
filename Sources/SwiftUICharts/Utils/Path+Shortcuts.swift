@@ -8,20 +8,16 @@
 import SwiftUI
 
 internal extension Path {
-    mutating func addArc(
-        _ center: CGPoint,
-        radius: CGFloat,
-        arc: Arc,
-        clockwise: Bool = false,
-        transform: CGAffineTransform = .identity
-    ) {
-        addArc(center: center, radius: radius, startAngle: arc.from, endAngle:  arc.to, clockwise: clockwise, transform: transform)
+    mutating func addArc(_ center: CGPoint, radius: CGFloat, arc: Arc, clockwise: Bool = false) {
+        addArc(center: center, radius: radius, startAngle: arc.from, endAngle:  arc.to, clockwise: clockwise)
     }
 }
 
 internal struct Arc {
     let from: Angle
     let to: Angle
+    
+    var halfWayRad: Double { (from + to).radians / -2 }
     
     public init(_ from: Angle, _ to: Angle) {
         self.from = from
@@ -31,10 +27,4 @@ internal struct Arc {
     public static func degrees(_ from: Double, _ to: Double) -> Arc {
         Arc(.degrees(from), .degrees(to))
     }
-    
-    public static func degreesTo(_ to: Double) -> Arc {
-        .degrees(0, to)
-    }
-    
-    var halfWayRad: Double { (from + to).radians / -2 }
 }

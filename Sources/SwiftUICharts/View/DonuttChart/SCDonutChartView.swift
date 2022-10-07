@@ -19,8 +19,8 @@ public struct SCDonutChartView: View {
     
     public var body: some View {
         SCBasicChartView(data, title: title) { proxy in
-            SCDonutSegmentsView(data, lineWidth: proxy.minSize * Metric.lineRatio, padding: Metric.padding)
-                .frame(squareSide: proxy.minSize)
+            SCDonutSegmentsView(data, lineWidth: proxy.minSide * Metric.lineRatio, padding: Metric.padding)
+                .frame(squareSide: proxy.minSide)
         }
     }
 }

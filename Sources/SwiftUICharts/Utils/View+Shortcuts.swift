@@ -12,4 +12,3 @@ internal extension View {
         frame(width: squareSide, height: squareSide, alignment: alignment)
     }
 }
-

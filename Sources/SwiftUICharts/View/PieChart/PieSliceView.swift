@@ -18,8 +18,8 @@ struct PieSliceView: View  {
         GeometryReader { proxy in
             ZStack {
                 Path { path in
-                    path.move(to: proxy.middle)
-                    path.addArc(proxy.middle, radius: slice.radius, arc: slice.arc)
+                    path.move(to: proxy.centre)
+                    path.addArc(proxy.centre, radius: slice.radius, arc: slice.arc)
                 }
                 .fill(slice.data.color)
             }
