@@ -15,7 +15,7 @@ internal struct SCPieSlice: SCCircleChartPart {
     private var sliceRadius: CGFloat = 0
     private(set) var radius: CGFloat {
         get { sliceRadius }
-        set { sliceRadius = max(0, newValue - padding) }
+        set { sliceRadius = max(0, newValue - padding * 2) }
     }
     let xyFix: Double = 0.875
     var idString: String { baseIsString }

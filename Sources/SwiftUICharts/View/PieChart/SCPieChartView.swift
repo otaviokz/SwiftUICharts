@@ -11,30 +11,18 @@ public struct SCPieChartView: View {
     @Environment(\.numberFormattterEnvironmentValue) var formatter: NumberFormatter
     private let data: [SCDataPoint]
     private let title: String
-    private let padding: CGFloat
-    let rFraction: CGFloat
-    let wFraction: CGFloat
     
-    public init(
-        _ data: [SCDataPoint],
-        title: String,
-        padding: CGFloat = 16,
-        wFraction: CGFloat = 0.75,
-        rFraction: CGFloat = 0.60
-    ) {
+    public init(_ data: [SCDataPoint], title: String) {
         let sorted: [SCDataPoint] = data.prefix(to: .pie)
         self.data = sorted
         self.title = title
-        self.padding = padding
-        self.wFraction = wFraction
-        self.rFraction = rFraction
     }
     
     public var body: some View {
         SCBasicChartView(title: title) { proxy in
-            SCPieSlicesView(data, padding: padding)
+            SCPieSlicesView(data, padding: Metric.padding)
                 .frame(squareSide: proxy.minSize)
-            HStack(alignment: .center, spacing: 16) {
+            HStack(alignment: .center, spacing: Metric.hSpacing) {
                 Group {
                     Text("Total:")
                         .font(.title.weight(.bold))
@@ -45,19 +33,23 @@ public struct SCPieChartView: View {
                 .foregroundColor(.gray)
                 .aspectRatio(1, contentMode: .fill)
             }
-            .frame(width: proxy.minSize - 2 * padding, height: 32)
-            .padding(.bottom, padding)
+            .frame(width: proxy.minSize - Metric.totalWidthFix, height: Metric.totalHeight)
+            .padding(.bottom, Metric.padding)
             
             SCDataRowsView(data)
-                .padding(.horizontal, padding * 1.5)
-                .padding(.bottom, 12)
+                .padding(.horizontal, Metric.rowsHorizontal)
+                .padding(.bottom, Metric.rowsBottom)
         }
     }
 }
 
-struct SCPieChartView_Previews: PreviewProvider {
-    static var previews: some View {
-        SCPieChartView(SCDataPoint.sampleEmployment, title: "Employment status distributions")
-            .environment(\.numberFormattterEnvironmentValue, .intgerValues)
+private extension SCPieChartView{
+    struct Metric {
+        static var padding: CGFloat { 16 }
+        static var hSpacing: CGFloat { 16 }
+        static var totalHeight: CGFloat { 32 }
+        static var rowsBottom: CGFloat { 12 }
+        static var rowsHorizontal: CGFloat { padding * 1.5 }
+        static var totalWidthFix: CGFloat { 2 * Metric.padding }
     }
 }

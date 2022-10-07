@@ -9,7 +9,7 @@ import SwiftUI
 
 struct SCBasicChartView<Content>: View where Content: View {
     private let title: String
-    @State private var vHeight: CGFloat = 0
+    @State private var stackHeight: CGFloat = 0
     @ViewBuilder private let content: (GeometryProxy) -> Content
     
     init(title: String, @ViewBuilder content: @escaping (GeometryProxy) -> Content) {
@@ -21,7 +21,7 @@ struct SCBasicChartView<Content>: View where Content: View {
         GeometryReader { proxy in
             VStack(alignment: .center, spacing: 0) {
                 Spacer()
-                    .frame(height: 12)
+                    .frame(height: Metric.padding)
                 Text(title)
                     .font(.title.weight(.semibold))
                     .foregroundColor(.gray)
@@ -30,15 +30,15 @@ struct SCBasicChartView<Content>: View where Content: View {
                 content(proxy)
             }
             .frame(width: proxy.minSize)
-            .padding(.vertical, 12)
-            .readHeight(for: $vHeight)
+            .padding(.vertical, Metric.padding)
+            .readHeight(for: $stackHeight)
         }
-        .frame(height: vHeight)
+        .frame(height: stackHeight)
     }
 }
 
-struct SCBasicChartView_Previews: PreviewProvider {
-    static var previews: some View {
-        SCBasicChartView(title: "Home Budget") { _ in EmptyView() }
+private extension SCBasicChartView {
+    struct Metric {
+        static var padding: CGFloat { 12 }
     }
 }

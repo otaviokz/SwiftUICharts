@@ -35,16 +35,16 @@ struct SCDonutSegmentsView: View {
                 .lineLimit(1)
                 .minimumScaleFactor(0.5)
                 .foregroundColor(.gray)
-                .frame(squareSide: proxy.minSize - 2.25 * (lineWidth + padding))
+                .frame(squareSide: proxy.minSize - Metric.textSizeFactor * (lineWidth + padding))
             }
             .frame(width: proxy.minSize, height: proxy.minSize)
         }
     }
 }
 
-struct SCDonutSegmentsView_Previews: PreviewProvider {
-    static var previews: some View {
-        SCDonutSegmentsView(SCDataPoint.sampleHome, lineWidth: 80, padding: 16)
+private extension SCDonutSegmentsView {
+    struct Metric {
+        static var textSizeFactor: CGFloat { 2.25 }
     }
 }
 
