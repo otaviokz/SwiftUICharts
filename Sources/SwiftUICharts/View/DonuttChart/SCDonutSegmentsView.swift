@@ -26,7 +26,7 @@ struct SCDonutSegmentsView: View {
                     SCDonutSegmentView(segment)
                 }
                 
-                VStack(alignment: .center, spacing: 0) {
+                VStack(spacing: 0) {
                     Text("Total:")
                         .font(.title.weight(.bold))
                     Text(data.totalString(with: formatter))
@@ -35,9 +35,9 @@ struct SCDonutSegmentsView: View {
                 .lineLimit(1)
                 .minimumScaleFactor(0.5)
                 .foregroundColor(.gray)
-                .frame(squareSide: proxy.minSize - Metric.textSizeFactor * (lineWidth + padding))
+                .frame(squareSide: proxy.minSide - Metric.textSizeFactor * (lineWidth + padding))
             }
-            .frame(width: proxy.minSize, height: proxy.minSize)
+            .frame(squareSide: proxy.minSide)
         }
     }
 }
@@ -51,7 +51,7 @@ private extension SCDonutSegmentsView {
 private extension Array where Element == SCDataPoint {
     func segments(_ proxy: GeometryProxy, width: CGFloat, padding: CGFloat) -> [SCDonutSegment] {
         var from = Angle.degrees(-90)
-
+        
         return map { data in
             let arc = Arc(from, from + data.delta)
             from = arc.to

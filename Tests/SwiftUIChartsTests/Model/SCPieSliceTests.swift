@@ -12,7 +12,7 @@ import SwiftUI
 class SCPieSliceTests: XCTestCase {
     func testBasics() throws {
         // Given
-        let slice1 = slice(50, r: 240, arc: .degreesTo(-90), padding: 8)
+        let slice1 = slice(50, r: 240, arc: .degrees(0, -90), padding: 8)
         var middle = CGPoint(240, 240)
         
         // Then

@@ -12,8 +12,9 @@ import SwiftUI
 class CGPoint_ShortcutsTests: XCTestCase {
     func testBasics() throws {
         // Then
-        XCTAssertEqual(.zero * CGPoint(2, 2), .zero)
-        XCTAssertEqual(CGPoint(2, 2) * CGPoint(2, 2), CGPoint(4, 4))
+        XCTAssertEqual(.zero * CGPoint(xy: 2), .zero)
+        XCTAssertEqual(CGPoint(xy: 2) * CGPoint(xy: 2), CGPoint(xy: 4))
         XCTAssertEqual(CGPoint(3, 4) * CGPoint(5, 6), CGPoint(15, 24))
+        XCTAssertEqual(CGPoint(12, 18) / 2, CGPoint(6, 9))
     }
 }

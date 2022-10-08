@@ -8,11 +8,11 @@
 import SwiftUI
 
 internal protocol SCCircleChartPart: Identifiable {
-    var data: SCDataPoint { get }
-    var padding: CGFloat { get }
     var title: String { get }
     var value: Double { get }
     var color: Color { get }
+    var data: SCDataPoint { get }
+    var padding: CGFloat { get }
     var arc: Arc { get }
     var midRadian: Double { get }
     var radius: CGFloat { get }

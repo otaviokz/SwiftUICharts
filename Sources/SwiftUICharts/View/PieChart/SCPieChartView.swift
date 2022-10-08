@@ -21,8 +21,8 @@ public struct SCPieChartView: View {
     public var body: some View {
         SCBasicChartView(data, title: title) { proxy in
             SCPieSlicesView(data, padding: Metric.padding)
-                .frame(squareSide: proxy.minSize)
-            HStack(alignment: .center, spacing: Metric.padding) {
+                .frame(squareSide: proxy.minSide)
+            HStack(spacing: Metric.padding) {
                 Group {
                     Text("Total:")
                         .font(.title.weight(.bold))
@@ -33,7 +33,7 @@ public struct SCPieChartView: View {
                 .foregroundColor(.gray)
                 .aspectRatio(1, contentMode: .fill)
             }
-            .frame(width: proxy.minSize - Metric.totalPadding, height: Metric.totalHeight)
+            .frame(width: proxy.minSide - Metric.totalPadding, height: Metric.totalHeight)
             .padding(.bottom, Metric.padding)
         }
     }

@@ -18,7 +18,7 @@ struct SCDonutSegmentView: View {
         GeometryReader { proxy in
             ZStack {
                 Path { path in
-                    path.addArc(proxy.minCentre, radius: segment.radius, arc: segment.arc)
+                    path.addArc(proxy.minSideCentre, radius: segment.radius, arc: segment.arc)
                 }
                 .stroke(segment.color, lineWidth: segment.width)
                 
@@ -28,7 +28,7 @@ struct SCDonutSegmentView: View {
                     .minimumScaleFactor(0.5)
                     .lineLimit(1)
                     .frame(maxWidth: segment.width * Metric.widthRatio)
-                    .position(segment.labelPosition(from: proxy.middle))
+                    .position(segment.labelPosition(from: proxy.centre))
             }
         }
     }

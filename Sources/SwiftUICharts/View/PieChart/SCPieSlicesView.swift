@@ -25,10 +25,10 @@ struct SCPieSlicesView: View {
             ZStack {
                 ForEach(data.asPieSlices(proxy.minRadius, padding: padding), id: \.id) { slice in
                     PieSliceView(slice)
-                        .frame(squareSide: proxy.minSize * Metric.sizeRatio)
+                        .frame(squareSide: proxy.minSide * Metric.sizeRatio)
                 }
             }
-            .frame(squareSide: proxy.minSize)
+            .frame(squareSide: proxy.minSide)
         }
     }
 }

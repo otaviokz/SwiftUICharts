@@ -1,5 +1,5 @@
 //
-//  File.swift
+//  SCDonutSegmentTests.swift
 //  
 //
 //  Created by Otávio Zabaleta on 05/10/2022.
@@ -12,7 +12,7 @@ import SwiftUI
 class SCDonutSegmentTests: XCTestCase {
     func testBasics() throws {
         // Given
-        let segment1 = segment(100, r: 240, arc: .degreesTo(-90), w: 80, p: 12)
+        let segment1 = segment(100, r: 240, arc: .degrees(0, -90), w: 80, p: 12)
         var middle = CGPoint(240, 240)
         
         // Then

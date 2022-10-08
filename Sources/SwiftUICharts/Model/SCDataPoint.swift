@@ -98,5 +98,3 @@ extension SCDataPoint {
         SCDataPoint(title, value: value, color: newColor, percentage: percentage)
     }
 }
-
-
