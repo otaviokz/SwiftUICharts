@@ -1,13 +1,14 @@
 //
-//  SwiftUIChartdsDemoAppTests.swift
-//  SwiftUIChartdsDemoAppTests
+//  DemoAppTests.swift
+//  DemoAppTests
 //
 //  Created by Otávio Zabaleta on 07/10/2022.
 //
 
 import XCTest
+@testable import DemoApp
 
-class SwiftUIChartdsDemoAppTests: XCTestCase {
+class DemoAppTests: XCTestCase {
 
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
@@ -27,7 +28,7 @@ class SwiftUIChartdsDemoAppTests: XCTestCase {
 
     func testPerformanceExample() throws {
         // This is an example of a performance test case.
-        measure {
+        self.measure {
             // Put the code you want to measure the time of here.
         }
     }

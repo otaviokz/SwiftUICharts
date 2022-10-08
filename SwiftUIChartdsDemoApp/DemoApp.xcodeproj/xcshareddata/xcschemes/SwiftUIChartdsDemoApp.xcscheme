@@ -17,7 +17,7 @@
                BlueprintIdentifier = "2B9C6C7B28DFC95300230C64"
                BuildableName = "SwiftUIChartdsDemoApp.app"
                BlueprintName = "SwiftUIChartdsDemoApp"
-               ReferencedContainer = "container:SwiftUIChartdsDemoApp.xcodeproj">
+               ReferencedContainer = "container:DemoApp.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -26,26 +26,34 @@
       buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
-      shouldUseLaunchSchemeArgsEnv = "YES">
+      shouldUseLaunchSchemeArgsEnv = "YES"
+      codeCoverageEnabled = "YES"
+      localizableStringsDataGatheringEnabled = "YES">
+      <CodeCoverageTargets>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "SwiftUICharts"
+            BuildableName = "SwiftUICharts"
+            BlueprintName = "SwiftUICharts"
+            ReferencedContainer = "container:..">
+         </BuildableReference>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "2B9C6C7B28DFC95300230C64"
+            BuildableName = "SwiftUIChartdsDemoApp.app"
+            BlueprintName = "SwiftUIChartdsDemoApp"
+            ReferencedContainer = "container:DemoApp.xcodeproj">
+         </BuildableReference>
+      </CodeCoverageTargets>
       <Testables>
          <TestableReference
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "2B9C6C8B28DFC95400230C64"
-               BuildableName = "SwiftUIChartdsDemoAppTests.xctest"
-               BlueprintName = "SwiftUIChartdsDemoAppTests"
-               ReferencedContainer = "container:SwiftUIChartdsDemoApp.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "2B9C6C9528DFC95400230C64"
-               BuildableName = "SwiftUIChartdsDemoAppUITests.xctest"
-               BlueprintName = "SwiftUIChartdsDemoAppUITests"
-               ReferencedContainer = "container:SwiftUIChartdsDemoApp.xcodeproj">
+               BlueprintIdentifier = "2BD8A03328F119D600E5B7D9"
+               BuildableName = "DemoAppTests.xctest"
+               BlueprintName = "DemoAppTests"
+               ReferencedContainer = "container:DemoApp.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -60,16 +68,6 @@
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "2B9C6C7B28DFC95300230C64"
-            BuildableName = "SwiftUIChartdsDemoApp.app"
-            BlueprintName = "SwiftUIChartdsDemoApp"
-            ReferencedContainer = "container:SwiftUIChartdsDemoApp.xcodeproj">
-         </BuildableReference>
-      </BuildableProductRunnable>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"
@@ -77,16 +75,15 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
+      <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "2B9C6C7B28DFC95300230C64"
             BuildableName = "SwiftUIChartdsDemoApp.app"
             BlueprintName = "SwiftUIChartdsDemoApp"
-            ReferencedContainer = "container:SwiftUIChartdsDemoApp.xcodeproj">
+            ReferencedContainer = "container:DemoApp.xcodeproj">
          </BuildableReference>
-      </BuildableProductRunnable>
+      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">
