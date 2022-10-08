@@ -17,16 +17,16 @@ jobs:
       - name: Run tests
         run: swift test --enable-code-coverage
 
-      - name: Test coverage
+      - name: Process coverage
         uses: maxep/spm-lcov-action@0.3.0
         with:
           output-file: ./coverage/lcov.info
 
-      - name: Updload Coverage
+      - name: Post coverage report
         uses: romeovs/lcov-reporter-action@v0.3.1
         with:
-          filter-changed-files: true
-          delete-old-comments: true
           title: Code Coverage
           lcov-file: ./coverage/lcov.info
           github-token: ${{ secrets.TOKEN }}
+          filter-changed-files: true
+          delete-old-comments: true
