@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2B6D7A4128F2477C007CC4F5 /* SwiftUICharts in Frameworks */ = {isa = PBXBuildFile; productRef = 2B6D7A4028F2477C007CC4F5 /* SwiftUICharts */; };
 		2B9C6C8028DFC95300230C64 /* SwiftUIChartdsDemoAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B9C6C7F28DFC95300230C64 /* SwiftUIChartdsDemoAppApp.swift */; };
 		2B9C6C8228DFC95300230C64 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B9C6C8128DFC95300230C64 /* ContentView.swift */; };
 		2B9C6C8428DFC95400230C64 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2B9C6C8328DFC95400230C64 /* Assets.xcassets */; };
@@ -54,6 +55,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2B9C6CB828DFCD8F00230C64 /* SwiftUICharts in Frameworks */,
+				2B6D7A4128F2477C007CC4F5 /* SwiftUICharts in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -165,6 +167,7 @@
 			name = SwiftUIChartdsDemoApp;
 			packageProductDependencies = (
 				2B9C6CB728DFCD8F00230C64 /* SwiftUICharts */,
+				2B6D7A4028F2477C007CC4F5 /* SwiftUICharts */,
 			);
 			productName = SwiftUIChartdsDemoApp;
 			productReference = 2B9C6C7C28DFC95300230C64 /* SwiftUIChartdsDemoApp.app */;
@@ -239,6 +242,7 @@
 			);
 			mainGroup = 2B9C6C7328DFC95300230C64;
 			packageReferences = (
+				2B6D7A3F28F2477C007CC4F5 /* XCRemoteSwiftPackageReference "SwiftUICharts" */,
 			);
 			productRefGroup = 2B9C6C7D28DFC95300230C64 /* Products */;
 			projectDirPath = "";
@@ -615,7 +619,23 @@
 		};
 /* End XCConfigurationList section */
 
+/* Begin XCRemoteSwiftPackageReference section */
+		2B6D7A3F28F2477C007CC4F5 /* XCRemoteSwiftPackageReference "SwiftUICharts" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/otaviokz/SwiftUICharts";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
 /* Begin XCSwiftPackageProductDependency section */
+		2B6D7A4028F2477C007CC4F5 /* SwiftUICharts */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2B6D7A3F28F2477C007CC4F5 /* XCRemoteSwiftPackageReference "SwiftUICharts" */;
+			productName = SwiftUICharts;
+		};
 		2B9C6CB728DFCD8F00230C64 /* SwiftUICharts */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = SwiftUICharts;
