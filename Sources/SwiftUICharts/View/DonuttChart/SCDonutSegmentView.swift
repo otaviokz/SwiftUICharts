@@ -16,20 +16,18 @@ struct SCDonutSegmentView: View {
     
     var body: some View {
         GeometryReader { proxy in
-            ZStack {
-                Path { path in
-                    path.addArc(proxy.minSideCentre, radius: segment.radius, arc: segment.arc)
-                }
-                .stroke(segment.color, lineWidth: segment.width)
-                
-                Text(segment.data.chartPercentString(with: .percent))
-                    .font(.callout)
-                    .foregroundColor(.white)
-                    .minimumScaleFactor(0.5)
-                    .lineLimit(1)
-                    .frame(maxWidth: segment.width * Metric.widthRatio)
-                    .position(segment.labelPosition(from: proxy.centre))
+            Path { path in
+                path.addArc(proxy.minSideCentre, radius: segment.radius, arc: segment.arc)
             }
+            .stroke(segment.color, lineWidth: segment.weight)
+            
+            Text(segment.data.chartPercentString(with: .percent))
+                .font(.callout)
+                .foregroundColor(.white)
+                .minimumScaleFactor(0.5)
+                .lineLimit(1)
+                .frame(maxWidth: segment.weight * Metric.widthRatio)
+                .position(segment.labelPosition(from: proxy.centre))
         }
     }
 }

@@ -40,6 +40,6 @@ class SCDonutSegmentTests: XCTestCase {
 
 private extension SCDonutSegmentTests {
     func segment(_ v: Double, r: CGFloat, arc: Arc, w: CGFloat, p: CGFloat) -> SCDonutSegment {
-        SCDonutSegment(SCDataPoint("aSegment", value: v, color: .red), radius: r, arc: arc, width: w, padding: p)
+        SCDonutSegment(SCDataPoint("aSegment", value: v, color: .red), radius: r, arc: arc, weight: w, padding: p)
     }
 }

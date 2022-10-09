@@ -12,15 +12,14 @@ public struct SCDonutChartView: View {
     private let title: String
     
     public init(_ data: [SCDataPoint], title: String) {
-        let sorted: [SCDataPoint] = data.prefix(to: .donut)
-        self.data = sorted
+        self.data = data.prefix(to: .donut)
         self.title = title
     }
     
     public var body: some View {
-        SCBasicChartView(data, title: title) { proxy in
-            SCDonutSegmentsView(data, lineWidth: proxy.minSide * Metric.lineRatio, padding: Metric.padding)
-                .frame(squareSide: proxy.minSide)
+        SCChartWrapperView(data, title: title) { proxy in
+            SCDonutView(data, weight: proxy.minSide * Metric.weightRatio, padding: Metric.padding)
+                .frame(square: proxy.minSide)
         }
     }
 }
@@ -28,6 +27,6 @@ public struct SCDonutChartView: View {
 private extension SCDonutChartView {
     struct Metric {
         static var padding: CGFloat { 16 }
-        static var lineRatio: CGFloat { 0.2 }
+        static var weightRatio: CGFloat { 0.2 }
     }
 }

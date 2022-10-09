@@ -12,19 +12,15 @@ internal struct SCPieSlice: SCCircleChartPart {
     let padding: CGFloat
     let arc: Arc
     let midRadian: Double
-    private var sliceRadius: CGFloat = 0
-    private(set) var radius: CGFloat {
-        get { sliceRadius }
-        set { sliceRadius = max(0, newValue - padding * 2) }
-    }
-    let xyFix: Double = 0.875
-    var idString: String { baseIsString }
+    let radius: CGFloat
+    let xyFix: Double = 0.65
+    var idString: String { baseIdString }
     
     init(_ data: SCDataPoint, radius: CGFloat, arc: Arc, padding: CGFloat) {
         self.data = data
         self.arc = arc
         self.padding = padding
         self.midRadian = arc.halfWayRad
-        self.radius = radius
+        self.radius = max(0, radius - padding * 2)
     }
 }

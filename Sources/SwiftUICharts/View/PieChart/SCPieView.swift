@@ -1,5 +1,5 @@
 //
-//  SCPieSlicesView.swift
+//  SCPieView.swift
 //  
 //
 //  Created by Otávio Zabaleta on 25/09/2022.
@@ -7,13 +7,10 @@
 
 import SwiftUI
 
-struct SCPieSlicesView: View {
-    @Environment(\.colorScheme) private var colorScheme: ColorScheme
+struct SCPieView: View {
     private let data: [SCDataPoint]
     private let padding: CGFloat
-    private var backgroundColor: Color {
-        colorScheme == .dark ? .white : .black
-    }
+    
     
     init(_ data: [SCDataPoint], padding: CGFloat) {
         self.data = data
@@ -23,24 +20,17 @@ struct SCPieSlicesView: View {
     var body: some View {
         GeometryReader { proxy in
             ZStack {
-                ForEach(data.asPieSlices(proxy.minRadius, padding: padding), id: \.id) { slice in
-                    PieSliceView(slice)
-                        .frame(squareSide: proxy.minSide * Metric.sizeRatio)
+                ForEach(data.slices(proxy.minRadius, padding: padding)) { slice in
+                    SCPieSliceView(slice)
                 }
             }
-            .frame(squareSide: proxy.minSide)
+            .frame(square: proxy.minSide)
         }
     }
 }
 
-private extension SCPieSlicesView {
-    struct Metric {
-        static var sizeRatio: CGFloat { 0.6 }
-    }
-}
-
 extension Array where Element == SCDataPoint {
-    func asPieSlices(_ radius: CGFloat, padding: CGFloat) -> [SCPieSlice] {
+    func slices(_ radius: CGFloat, padding: CGFloat) -> [SCPieSlice] {
         var from = Angle.degrees(-90)
 
         return map { data in

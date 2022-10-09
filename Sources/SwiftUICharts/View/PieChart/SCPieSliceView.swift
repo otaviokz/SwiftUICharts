@@ -1,5 +1,5 @@
 //
-//  PieSliceView.swift
+//  SCPieSliceView.swift
 //  
 //
 //  Created by Otávio Zabaleta on 26/09/2022.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct PieSliceView: View  {
+struct SCPieSliceView: View  {
     private let slice: SCPieSlice
     
     init(_ slice: SCPieSlice) {
@@ -16,13 +16,11 @@ struct PieSliceView: View  {
     
     var body: some View {
         GeometryReader { proxy in
-            ZStack {
-                Path { path in
-                    path.move(to: proxy.centre)
-                    path.addArc(proxy.centre, radius: slice.radius, arc: slice.arc)
-                }
-                .fill(slice.data.color)
+            Path { path in
+                path.move(to: proxy.centre)
+                path.addArc(proxy.centre, radius: slice.radius, arc: slice.arc)
             }
+            .fill(slice.data.color)
             
             Text(slice.data.chartPercentString(with: .percent))
                 .font(.callout)
@@ -30,6 +28,5 @@ struct PieSliceView: View  {
                 .lineLimit(1)
                 .position(slice.labelPosition(from: proxy.centre))
         }
-        .aspectRatio(1, contentMode: .fit)
     }
 }
