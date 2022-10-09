@@ -11,16 +11,9 @@ private struct NumberFormatterEnvironmentKey: EnvironmentKey {
     static let defaultValue: NumberFormatter = .intgerValues
 }
 
-
 public extension EnvironmentValues {
-    var numberFormattterEnvironmentValue: NumberFormatter {
+    var numberFormatter: NumberFormatter {
         get { self[NumberFormatterEnvironmentKey.self] }
         set { self[NumberFormatterEnvironmentKey.self] = newValue }
-    }
-}
-
-public extension View {
-    func myCustomEnvironmenNumberFormatteralue(_ myCustomEnvironmenNumberFormatteralue: NumberFormatter) -> some View {
-        environment(\.numberFormattterEnvironmentValue, myCustomEnvironmenNumberFormatteralue)
     }
 }

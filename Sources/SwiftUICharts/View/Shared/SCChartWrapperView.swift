@@ -1,5 +1,5 @@
 //
-//  SCBasicChartView.swift
+//  SCChartWrapperView.swift
 //  
 //
 //  Created by Otávio Zabaleta on 25/09/2022.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct SCBasicChartView<Content>: View where Content: View {
+struct SCChartWrapperView<Content>: View where Content: View {
     private let data: [SCDataPoint]
     private let title: String
     @State private var contentHeight: CGFloat = 0
@@ -25,13 +25,13 @@ struct SCBasicChartView<Content>: View where Content: View {
                 Spacer()
                     .frame(height: Metric.padding)
                 Text(title)
-                    .font(.title.weight(.semibold))
+                    .font(.title.semibold)
                     .foregroundColor(.gray)
                     .multilineTextAlignment(.center)
                     .aspectRatio(1, contentMode: .fill)
                 content(proxy)
                 
-                SCDataRowsView(data)
+                SCCaptionsView(data)
                     .padding(.horizontal, Metric.horizontalPadding)
                     .padding(.bottom, Metric.rowsBottom)
             }
@@ -43,12 +43,10 @@ struct SCBasicChartView<Content>: View where Content: View {
     }
 }
 
-private extension SCBasicChartView {
+private extension SCChartWrapperView {
     struct Metric {
         static var padding: CGFloat { 12 }
-        static var bottom: CGFloat { 12 }
         static var rowsBottom: CGFloat { 12 }
-        static var rowsHorizontal: CGFloat { 16 }
-        static var horizontalPadding: CGFloat { rowsHorizontal * 1.5 }
+        static var horizontalPadding: CGFloat { 24 }
     }
 }

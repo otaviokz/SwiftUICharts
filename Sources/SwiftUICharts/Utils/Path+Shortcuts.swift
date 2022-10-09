@@ -9,7 +9,7 @@ import SwiftUI
 
 internal extension Path {
     mutating func addArc(_ center: CGPoint, radius: CGFloat, arc: Arc, clockwise: Bool = false) {
-        addArc(center: center, radius: radius, startAngle: arc.from, endAngle:  arc.to, clockwise: clockwise)
+        addArc(center: center, radius: radius, startAngle: arc.from, endAngle: arc.to, clockwise: clockwise)
     }
 }
 

@@ -27,7 +27,7 @@ internal extension SCCircleChartPart {
     var value: Double { data.value }
     var color: Color { data.color }
     var id: ObjectIdentifier { idString.asObjectIdentifier }
-    var baseIsString: String { "\(data.idString)\(radius)\(padding)\(midRadian)" }
+    var baseIdString: String { "\(data.idString)\(radius)\(padding)\(midRadian)" }
     
     func labelPosition(from centre: CGPoint) -> CGPoint {
         centre * CGPoint(1 + xyFix * cos(midRadian), 1 - xyFix * sin(midRadian))
