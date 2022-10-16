@@ -20,7 +20,7 @@ public struct SCPieChartView: View {
     public var body: some View {
         SCChartWrapperView(data, title: title) { proxy in
             SCPieView(data, padding: Metric.padding)
-                .frame(square: proxy.minSide)
+                .frame(square: proxy.minSize)
             
             HStack {
                 Group {
@@ -32,8 +32,8 @@ public struct SCPieChartView: View {
                 .foregroundColor(.gray)
                 .aspectRatio(1, contentMode: .fill)
             }
-            .frame(width: proxy.minSide - 2 * Metric.padding, height: Metric.height)
-            .padding(.bottom, Metric.padding)
+            .frame(width: proxy.minSize - 2 * Metric.padding, height: Metric.totalHeight)
+            .padding(.bottom, Metric.bottom)
         }
     }
 }
@@ -41,6 +41,7 @@ public struct SCPieChartView: View {
 private extension SCPieChartView{
     struct Metric {
         static var padding: CGFloat { 16 }
-        static var height: CGFloat { 32 }
+        static var bottom: CGFloat { 16 }
+        static var totalHeight: CGFloat { 32 }
     }
 }

@@ -35,7 +35,7 @@ struct SCChartWrapperView<Content>: View where Content: View {
                     .padding(.horizontal, Metric.horizontalPadding)
                     .padding(.bottom, Metric.rowsBottom)
             }
-            .frame(width: proxy.minSide)
+            .frame(width: proxy.minSize)
             .padding(.vertical, Metric.padding)
             .bindHeight(to: $contentHeight)
         }

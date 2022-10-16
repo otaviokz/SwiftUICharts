@@ -1,5 +1,5 @@
 //
-//  SCPieSliceView.swift
+//  SCPiePartView.swift
 //  
 //
 //  Created by Otávio Zabaleta on 26/09/2022.
@@ -7,10 +7,10 @@
 
 import SwiftUI
 
-struct SCPieSliceView: View  {
-    private let slice: SCPieSlice
+struct SCPiePartView: View  {
+    private let slice: SCPiePart
     
-    init(_ slice: SCPieSlice) {
+    init(_ slice: SCPiePart) {
         self.slice = slice
     }
     

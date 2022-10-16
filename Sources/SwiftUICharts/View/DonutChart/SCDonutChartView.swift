@@ -18,8 +18,8 @@ public struct SCDonutChartView: View {
     
     public var body: some View {
         SCChartWrapperView(data, title: title) { proxy in
-            SCDonutView(data, weight: proxy.minSide * Metric.weightRatio, padding: Metric.padding)
-                .frame(square: proxy.minSide)
+            SCDonutView(data, weight: proxy.minSize * Metric.weightRatio, padding: Metric.padding)
+                .frame(square: proxy.minSize)
         }
     }
 }

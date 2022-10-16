@@ -23,22 +23,21 @@ struct SCDonutView: View {
     var body: some View {
         GeometryReader { proxy in
             ZStack {
-                ForEach(data.segments(proxy.minRadius, weight: weight, padding: padding)) { segment in
-                    SCDonutSegmentView(segment)
+                ForEach(data.parts(proxy.minSizeRadius, weight: weight, padding: padding)) { part in
+                    SCDonutPartView(part)
                 }
                 
                 VStack(spacing: 0) {
                     Text("Total:")
-                        .font(.title.bold)
+                        .font(.title.semibold)
                     Text(data.totalString(with: formatter))
                         .font(.title)
                 }
                 .lineLimit(1)
                 .minimumScaleFactor(0.5)
                 .foregroundColor(.gray)
-                .frame(square: proxy.minSide - Metric.textSizeFactor * (weight + padding))
+                .frame(square: proxy.minSize - Metric.textSizeFactor * (weight + padding))
             }
-            .frame(square: proxy.minSide)
         }
     }
 }
@@ -50,13 +49,13 @@ private extension SCDonutView {
 }
 
 private extension Array where Element == SCDataPoint {
-    func segments(_ radius: CGFloat, weight: CGFloat, padding: CGFloat) -> [SCDonutSegment] {
+    func parts(_ radius: CGFloat, weight: CGFloat, padding: CGFloat) -> [SCDonutPart] {
         var from = Angle.degrees(-90)
         
         return map { data in
             let arc = Arc(from, from + data.delta)
             from = arc.to
-            return SCDonutSegment(data, radius: radius, arc: arc, weight: weight, padding: padding)
+            return SCDonutPart(data, radius: radius, arc: arc, weight: weight, padding: padding)
         }
     }
 }
