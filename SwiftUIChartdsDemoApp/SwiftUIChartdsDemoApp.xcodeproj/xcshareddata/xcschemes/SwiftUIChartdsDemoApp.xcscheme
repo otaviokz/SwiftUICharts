@@ -20,13 +20,65 @@
                ReferencedContainer = "container:SwiftUIChartdsDemoApp.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "NO"
+            buildForProfiling = "NO"
+            buildForArchiving = "NO"
+            buildForAnalyzing = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "SwiftUIChartsTests"
+               BuildableName = "SwiftUIChartsTests"
+               BlueprintName = "SwiftUIChartsTests"
+               ReferencedContainer = "container:..">
+            </BuildableReference>
+         </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction
       buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
-      shouldUseLaunchSchemeArgsEnv = "YES">
+      shouldUseLaunchSchemeArgsEnv = "YES"
+      codeCoverageEnabled = "YES">
+      <CodeCoverageTargets>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "SwiftUICharts"
+            BuildableName = "SwiftUICharts"
+            BlueprintName = "SwiftUICharts"
+            ReferencedContainer = "container:..">
+         </BuildableReference>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "2B9C6C7B28DFC95300230C64"
+            BuildableName = "SwiftUIChartdsDemoApp.app"
+            BlueprintName = "SwiftUIChartdsDemoApp"
+            ReferencedContainer = "container:SwiftUIChartdsDemoApp.xcodeproj">
+         </BuildableReference>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "SwiftUIChartsTests"
+            BuildableName = "SwiftUIChartsTests"
+            BlueprintName = "SwiftUIChartsTests"
+            ReferencedContainer = "container:..">
+         </BuildableReference>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "2B9C6C8B28DFC95400230C64"
+            BuildableName = "SwiftUIChartdsDemoAppTests.xctest"
+            BlueprintName = "SwiftUIChartdsDemoAppTests"
+            ReferencedContainer = "container:SwiftUIChartdsDemoApp.xcodeproj">
+         </BuildableReference>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "2B9C6C9528DFC95400230C64"
+            BuildableName = "SwiftUIChartdsDemoAppUITests.xctest"
+            BlueprintName = "SwiftUIChartdsDemoAppUITests"
+            ReferencedContainer = "container:SwiftUIChartdsDemoApp.xcodeproj">
+         </BuildableReference>
+      </CodeCoverageTargets>
       <Testables>
          <TestableReference
             skipped = "NO">
@@ -46,6 +98,16 @@
                BuildableName = "SwiftUIChartdsDemoAppUITests.xctest"
                BlueprintName = "SwiftUIChartdsDemoAppUITests"
                ReferencedContainer = "container:SwiftUIChartdsDemoApp.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "SwiftUIChartsTests"
+               BuildableName = "SwiftUIChartsTests"
+               BlueprintName = "SwiftUIChartsTests"
+               ReferencedContainer = "container:..">
             </BuildableReference>
          </TestableReference>
       </Testables>

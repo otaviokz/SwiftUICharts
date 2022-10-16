@@ -11,6 +11,9 @@ jobs:
         with:
           swift-version: "5.5"
 
+      - name: Navigate to DemoApp
+        run: cd SwiftUIChartdsDemoApp
+      
       - name: Build
         run: swift build
 
