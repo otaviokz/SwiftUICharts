@@ -11,14 +11,11 @@ jobs:
         with:
           swift-version: "5.5"
 
-      - name: Navigate to DemoApp
-        run: cd SwiftUIChartdsDemoApp
-      
       - name: Build
-        run: swift build
+        run: cd SwiftUIChartdsDemoApp; swift build
 
       - name: Run tests
-        run: swift test --enable-code-coverage
+        run: cd SwiftUIChartdsDemoApp; swift test --enable-code-coverage
 
       - name: Process coverage
         uses: maxep/spm-lcov-action@0.3.0

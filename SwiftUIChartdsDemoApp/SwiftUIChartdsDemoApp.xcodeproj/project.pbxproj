@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2B6D7A4128F2477C007CC4F5 /* SwiftUICharts in Frameworks */ = {isa = PBXBuildFile; productRef = 2B6D7A4028F2477C007CC4F5 /* SwiftUICharts */; };
+		2B83E36928FC18F40072AEA0 /* SwiftUICharts in Frameworks */ = {isa = PBXBuildFile; productRef = 2B83E36828FC18F40072AEA0 /* SwiftUICharts */; };
 		2B9C6C8028DFC95300230C64 /* SwiftUIChartdsDemoAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B9C6C7F28DFC95300230C64 /* SwiftUIChartdsDemoAppApp.swift */; };
 		2B9C6C8228DFC95300230C64 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B9C6C8128DFC95300230C64 /* ContentView.swift */; };
 		2B9C6C8428DFC95400230C64 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2B9C6C8328DFC95400230C64 /* Assets.xcassets */; };
@@ -15,7 +15,6 @@
 		2B9C6C9128DFC95400230C64 /* SwiftUIChartdsDemoAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B9C6C9028DFC95400230C64 /* SwiftUIChartdsDemoAppTests.swift */; };
 		2B9C6C9B28DFC95400230C64 /* SwiftUIChartdsDemoAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B9C6C9A28DFC95400230C64 /* SwiftUIChartdsDemoAppUITests.swift */; };
 		2B9C6C9D28DFC95400230C64 /* SwiftUIChartdsDemoAppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B9C6C9C28DFC95400230C64 /* SwiftUIChartdsDemoAppUITestsLaunchTests.swift */; };
-		2B9C6CB828DFCD8F00230C64 /* SwiftUICharts in Frameworks */ = {isa = PBXBuildFile; productRef = 2B9C6CB728DFCD8F00230C64 /* SwiftUICharts */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,8 +53,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2B9C6CB828DFCD8F00230C64 /* SwiftUICharts in Frameworks */,
-				2B6D7A4128F2477C007CC4F5 /* SwiftUICharts in Frameworks */,
+				2B83E36928FC18F40072AEA0 /* SwiftUICharts in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -166,8 +164,7 @@
 			);
 			name = SwiftUIChartdsDemoApp;
 			packageProductDependencies = (
-				2B9C6CB728DFCD8F00230C64 /* SwiftUICharts */,
-				2B6D7A4028F2477C007CC4F5 /* SwiftUICharts */,
+				2B83E36828FC18F40072AEA0 /* SwiftUICharts */,
 			);
 			productName = SwiftUIChartdsDemoApp;
 			productReference = 2B9C6C7C28DFC95300230C64 /* SwiftUIChartdsDemoApp.app */;
@@ -242,7 +239,7 @@
 			);
 			mainGroup = 2B9C6C7328DFC95300230C64;
 			packageReferences = (
-				2B6D7A3F28F2477C007CC4F5 /* XCRemoteSwiftPackageReference "SwiftUICharts" */,
+				2B83E36728FC18F40072AEA0 /* XCRemoteSwiftPackageReference "SwiftUICharts" */,
 			);
 			productRefGroup = 2B9C6C7D28DFC95300230C64 /* Products */;
 			projectDirPath = "";
@@ -620,7 +617,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		2B6D7A3F28F2477C007CC4F5 /* XCRemoteSwiftPackageReference "SwiftUICharts" */ = {
+		2B83E36728FC18F40072AEA0 /* XCRemoteSwiftPackageReference "SwiftUICharts" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/otaviokz/SwiftUICharts";
 			requirement = {
@@ -631,13 +628,9 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		2B6D7A4028F2477C007CC4F5 /* SwiftUICharts */ = {
+		2B83E36828FC18F40072AEA0 /* SwiftUICharts */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 2B6D7A3F28F2477C007CC4F5 /* XCRemoteSwiftPackageReference "SwiftUICharts" */;
-			productName = SwiftUICharts;
-		};
-		2B9C6CB728DFCD8F00230C64 /* SwiftUICharts */ = {
-			isa = XCSwiftPackageProductDependency;
+			package = 2B83E36728FC18F40072AEA0 /* XCRemoteSwiftPackageReference "SwiftUICharts" */;
 			productName = SwiftUICharts;
 		};
 /* End XCSwiftPackageProductDependency section */

@@ -27,7 +27,7 @@ class SCDataPointTests: XCTestCase {
         XCTAssertEqual(uat.totalString(), "1250000000.0")
         XCTAssertEqual(uat.totalString(with: .intgerValues), "1,250,000,000")
         
-        XCTAssertEqual(uat[0].id, SCDataPoint("Military", value: 750000000, color: Color(hex: "4770b3")!).id)
+        XCTAssertEqual(uat[0].id, SCDataPoint("Military", value: 750000000, color: Color(hex: "4770b3ff")!).id)
     }
 
     func testRowPercentages() throws {
