@@ -8,14 +8,14 @@
 import SwiftUI
 
 struct SCChartWrapperView<Content>: View where Content: View {
-    private let data: [SCDataPoint]
     private let title: String
-    @State private var contentHeight: CGFloat = 0
+    private let data: [SCDataPoint]
     @ViewBuilder private let content: (GeometryProxy) -> Content
+    @State private var contentHeight: CGFloat = 0
     
-    init(_ data: [SCDataPoint], title: String, @ViewBuilder content: @escaping (GeometryProxy) -> Content) {
-        self.data = data
+    public init(_ title: String, data: [SCDataPoint], @ViewBuilder content: @escaping (GeometryProxy) -> Content) {
         self.title = title
+        self.data = data
         self.content = content
     }
     
