@@ -8,25 +8,25 @@
 import SwiftUI
 
 struct SCPiePartView: View  {
-    private let slice: SCPiePart
+    private let part: SCPiePart
     
-    init(_ slice: SCPiePart) {
-        self.slice = slice
+    init(_ part: SCPiePart) {
+        self.part = part
     }
     
     var body: some View {
         GeometryReader { proxy in
             Path { path in
                 path.move(to: proxy.centre)
-                path.addArc(proxy.centre, radius: slice.radius, arc: slice.arc)
+                path.addArc(proxy.centre, radius: part.radius, arc: part.arc)
             }
-            .fill(slice.data.color)
+            .fill(part.data.color)
             
-            Text(slice.data.chartPercentString(with: .percent))
+            Text(part.data.chartPercentString(with: .percent))
                 .font(.callout)
                 .foregroundColor(.white)
                 .lineLimit(1)
-                .position(slice.labelPosition(from: proxy.centre))
+                .position(part.labelPosition(from: proxy.centre))
         }
     }
 }

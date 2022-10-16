@@ -9,16 +9,16 @@ import SwiftUI
 
 public struct SCPieChartView: View {
     @Environment(\.numberFormatter) var formatter: NumberFormatter
-    private let data: [SCDataPoint]
     private let title: String
+    private let data: [SCDataPoint]
     
-    public init(_ data: [SCDataPoint], title: String) {
-        self.data = data.prefix(to: .pie)
+    public init(_ title: String, data: [SCDataPoint]) {
         self.title = title
+        self.data = data.prefix(to: .pie)
     }
     
     public var body: some View {
-        SCChartWrapperView(data, title: title) { proxy in
+        SCChartWrapperView(title, data: data) { proxy in
             SCPieView(data, padding: Metric.padding)
                 .frame(square: proxy.minSize)
             

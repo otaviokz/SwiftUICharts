@@ -12,13 +12,13 @@ struct ContentView: View {
     var body: some View {
         ScrollView(.vertical, showsIndicators: false) {
             VStack(spacing: 0) {
-                SCPieChartView(SCDataPoint.sampleEmployment, title: "Employment status distributions")
+                SCPieChartView("Employment status distributions", data: SCDataPoint.sampleEmployment)
                     .environment(\.numberFormatter, .intgerValues)
                 Divider().frame(height: 2).background(Color.gray)
-                SCDonutChartView(SCDataPoint.sampleHome, title: "Home Budget")
+                SCDonutChartView("Home Budget", data: SCDataPoint.sampleHome)
                     .environment(\.numberFormatter, .gbp)
                 Divider().frame(height: 2).background(Color.gray)
-                SCDonutChartView(SCDataPoint.sampleGov, title: "Government Spenditure")
+                SCDonutChartView("Government Spenditure", data: SCDataPoint.sampleGov)
                     .environment(\.numberFormatter, .usd)
             }
         }
