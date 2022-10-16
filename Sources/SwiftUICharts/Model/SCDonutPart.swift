@@ -1,5 +1,5 @@
 //
-//  SCDonutSegment.swift
+//  SCDonutPart.swift
 //  
 //
 //  Created by Otávio Zabaleta on 24/09/2022.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-internal struct SCDonutSegment: SCCircleChartPart {
+internal struct SCDonutPart: SCCircleChartPart {
     let data: SCDataPoint
     let padding: CGFloat
     let arc: Arc

@@ -32,7 +32,7 @@ struct SCCaptionsView: View {
                         Text(data.valueString(with: formatter))
                             .font(fontForValues)
                         Text(data.percentString(with: .percent))
-                            .font(percentageFont)
+                            .font(.subheadline.semibold)
                     }
                     .lineLimit(1)
                 }
@@ -49,13 +49,10 @@ private extension SCCaptionsView {
         static var spacing: CGFloat { 6 }
     }
     
-    var primaryValueFont: Font { .headline.medium }
-    var percentageFont: Font { .subheadline.semibold }
-    
     var fontForValues: Font {
         let largest = data[0].value
         if largest <= 999999999 {
-            return primaryValueFont
+            return .headline.medium
         } else if largest <= 999999999999 {
             return .subheadline
         } else if largest <= 999999999999999 {
