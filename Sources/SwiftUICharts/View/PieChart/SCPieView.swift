@@ -11,7 +11,6 @@ struct SCPieView: View {
     private let data: [SCDataPoint]
     private let padding: CGFloat
     
-    
     init(_ data: [SCDataPoint], padding: CGFloat) {
         self.data = data
         self.padding = padding

@@ -29,6 +29,7 @@ struct SCChartWrapperView<Content>: View where Content: View {
                     .foregroundColor(.gray)
                     .multilineTextAlignment(.center)
                     .aspectRatio(1, contentMode: .fill)
+                
                 content(proxy)
                 
                 SCCaptionsView(data)
