@@ -3,11 +3,10 @@ A charting library for SwiftUI.
 
 ### Current Charts
 
-#### Donut Charts
-<img src="images/light.png" width="240"/>
+| Donut   |      Pie      |
+|:----------:|:-------------:|
+| <img src="images/light.png" width="240"/> |  <img src="images/dark.png" width="240"/> |
 
-#### Pie Charts 
-<img src="images/dark.png" width="240"/>
 
 ## Usage
 
