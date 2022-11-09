@@ -9,9 +9,11 @@ import SwiftUI
 
 struct SCPiePartView: View  {
     private let part: SCPiePart
+    private let onChartMinPct: Double
     
-    init(_ part: SCPiePart) {
+    init(_ part: SCPiePart, onChartMinPct: Double) {
         self.part = part
+        self.onChartMinPct = onChartMinPct
     }
     
     var body: some View {
@@ -22,7 +24,7 @@ struct SCPiePartView: View  {
             }
             .fill(part.data.color)
             
-            Text(part.data.chartPercentString(with: .percent))
+            Text(part.data.chartPctString(with: .percent, threshold: onChartMinPct))
                 .font(.callout)
                 .foregroundColor(.white)
                 .lineLimit(1)

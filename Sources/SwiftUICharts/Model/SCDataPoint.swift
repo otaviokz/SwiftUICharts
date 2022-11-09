@@ -24,15 +24,15 @@ public struct SCDataPoint: SCDataPointProtocol {
         SCDataPoint(title, value: value, color: color, percentage: percentage)
     }
     
-    func percentString(with formatter: NumberFormatter? = nil) -> String {
-        formatter?.string(for: percentage) ?? defaultPercentSring
+    func pctString(with formatter: NumberFormatter? = nil) -> String {
+        formatter?.string(for: percentage) ?? defaultPctSring
     }
     
-    func chartPercentString(with formatter: NumberFormatter? = nil, threshold: Double = 0.05) -> String {
-        percentage >= threshold ? percentString(with: formatter) : ""
+    func chartPctString(with formatter: NumberFormatter? = nil, threshold: Double = 0.05) -> String {
+        percentage >= threshold ? pctString(with: formatter) : ""
     }
     
-    private var defaultPercentSring: String {
+    private var defaultPctSring: String {
         String(format: "%.1f\u{fe6a}", percentage * 100)
     }
     

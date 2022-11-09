@@ -9,9 +9,11 @@ import SwiftUI
 
 struct SCDonutPartView: View {
     private let part: SCDonutPart
+    private let onChartMinPct: Double
     
-    init(_ part: SCDonutPart) {
+    init(_ part: SCDonutPart, onChartMinPct: Double) {
         self.part = part
+        self.onChartMinPct = onChartMinPct
     }
     
     var body: some View {
@@ -21,7 +23,7 @@ struct SCDonutPartView: View {
             }
             .stroke(part.color, lineWidth: part.weight)
             
-            Text(part.data.chartPercentString(with: .percent))
+            Text(part.data.chartPctString(with: .percent, threshold: onChartMinPct))
                 .font(.callout)
                 .foregroundColor(.white)
                 .minimumScaleFactor(0.5)
