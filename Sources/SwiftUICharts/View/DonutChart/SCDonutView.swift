@@ -13,18 +13,20 @@ struct SCDonutView: View {
     private let data: [SCDataPoint]
     private let weight: CGFloat
     private let padding: CGFloat
+    private let onChartMinPct: Double
     
-    init(_ data: [SCDataPoint], weight: CGFloat, padding: CGFloat) {
+    init(_ data: [SCDataPoint], weight: CGFloat, padding: CGFloat, onChartMinPct: Double) {
         self.data = data
         self.weight = weight
         self.padding = padding
+        self.onChartMinPct = onChartMinPct
     }
     
     var body: some View {
         GeometryReader { proxy in
             ZStack {
                 ForEach(data.parts(proxy.minSizeRadius, weight: weight, padding: padding)) { part in
-                    SCDonutPartView(part)
+                    SCDonutPartView(part, onChartMinPct: onChartMinPct)
                 }
                 
                 VStack(spacing: 0) {

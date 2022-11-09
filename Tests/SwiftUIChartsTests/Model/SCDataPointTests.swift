@@ -30,7 +30,7 @@ class SCDataPointTests: XCTestCase {
         XCTAssertEqual(uat[0].id, SCDataPoint("Military", value: 750000000, color: Color(hex: "4770b3")!).id)
     }
 
-    func testRowPercentages() throws {
+    func testRowPctages() throws {
         // Given
         var uat = SCDataPoint.sampleHome
         
@@ -39,9 +39,9 @@ class SCDataPointTests: XCTestCase {
         
         // When
         uat = uat.computingPercentages()
-        let percentValues: [Double] = uat.map { $0.percentage * 100 }
-        let expectedValues = [36.8, 24.5, 3.1, 5.8, 12.3, 17.6]
-        let tuples = zip(percentValues, expectedValues).map { ($0, $1) }
+        let pctValues: [Double] = uat.map { $0.percentage * 100 }
+        let expectedPctValues = [36.8, 24.5, 3.1, 5.8, 12.3, 17.6]
+        let tuples = zip(pctValues, expectedPctValues).map { ($0, $1) }
         
         // Then
         for (result, expected) in tuples {
@@ -58,9 +58,9 @@ class SCDataPointTests: XCTestCase {
         
         // When
         uat = uat.prefix(to: .pie)
-        let percentValues: [String] = uat.map { $0.chartPercentString(with: .percent, threshold: 0.1) }
-        let expectedValues = [41.8, 29.6, 12.2]
-        let tuples = zip(percentValues, expectedValues).map { ($0, $1) }
+        let pctValues: [String] = uat.map { $0.chartPctString(with: .percent, threshold: 0.1) }
+        let expectedPctValues = [41.8, 29.6, 12.2]
+        let tuples = zip(pctValues, expectedPctValues).map { ($0, $1) }
         
         // Then
         for (result, expected) in tuples {
@@ -83,9 +83,9 @@ class SCDataPointTests: XCTestCase {
         let uat = SCDataPoint.sampleHome.computingPercentages()
         
         // Then
-        XCTAssertEqual(uat[0].percentString(with: .percent), "36.8\u{fe6a}")
-        XCTAssertEqual(uat[1].percentString(with: .percent), "24.5\u{fe6a}")
-        XCTAssertEqual(uat[1].percentString(), "24.5\u{fe6a}")
+        XCTAssertEqual(uat[0].pctString(with: .percent), "36.8\u{fe6a}")
+        XCTAssertEqual(uat[1].pctString(with: .percent), "24.5\u{fe6a}")
+        XCTAssertEqual(uat[1].pctString(), "24.5\u{fe6a}")
     }
     
     func testAngles() {

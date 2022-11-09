@@ -10,16 +10,18 @@ import SwiftUI
 struct SCPieView: View {
     private let data: [SCDataPoint]
     private let padding: CGFloat
+    private let onChartMinPct: Double
     
-    init(_ data: [SCDataPoint], padding: CGFloat) {
+    init(_ data: [SCDataPoint], padding: CGFloat, onChartMinPct: Double) {
         self.data = data
         self.padding = padding
+        self.onChartMinPct = onChartMinPct
     }
     
     var body: some View {
         GeometryReader { proxy in
             ForEach(data.parts(proxy.minSizeRadius, padding: padding)) { part in
-                SCPiePartView(part)
+                SCPiePartView(part, onChartMinPct: onChartMinPct)
             }
         }
     }

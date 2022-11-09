@@ -31,7 +31,7 @@ struct SCCaptionsView: View {
                     VStack(alignment: .trailing, spacing: 0) {
                         Text(data.valueString(with: formatter))
                             .font(fontForValues)
-                        Text(data.percentString(with: .percent))
+                        Text(data.pctString(with: .percent))
                             .font(.subheadline.semibold)
                     }
                     .lineLimit(1)
