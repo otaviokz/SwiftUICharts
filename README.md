@@ -9,7 +9,7 @@ A charting library for SwiftUI.
 
 Sample usage with [SpaceX lanches monitoring app](https://github.com/otaviokz/SpaceX)
 
-<img src="https://user-images.githubusercontent.com/1006720/231042113-ec02a69e-5dfd-41db-b4be-c0c6ced1ae5b.gif" height="240"/>
+<img src="https://user-images.githubusercontent.com/1006720/231042113-ec02a69e-5dfd-41db-b4be-c0c6ced1ae5b.gif" width="240"/>
 
 ## Usage
 
