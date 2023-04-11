@@ -7,6 +7,9 @@ A charting library for SwiftUI.
 |:----------:|:-------------:|
 | <img src="images/light.png" width="240"/> |  <img src="images/dark.png" width="240"/> |
 
+Sample usage with [SpaceX lanches monitoring app](https://github.com/otaviokz/SpaceX)
+
+<img src="https://user-images.githubusercontent.com/1006720/231042113-ec02a69e-5dfd-41db-b4be-c0c6ced1ae5b.gif" height="240"/>
 
 ## Usage
 
@@ -23,3 +26,6 @@ Otavio Zabaleta: otaviokz@gmail.com
 
 ## License
 SwiftUICharts is available under the MIT license. See the [LICENSE](LICENSE) file for more info.
+
+
+![Simulator Screen Recording - 14 Pro - 2023-04-10 at 23 42 17](https://user-images.githubusercontent.com/1006720/231042113-ec02a69e-5dfd-41db-b4be-c0c6ced1ae5b.gif)
