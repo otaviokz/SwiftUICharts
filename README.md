@@ -1,4 +1,8 @@
-# SwiftUICharts
+# Communicate:
+
+This Swift Packacge repo will no longer maintained since Aplle integrated `SwiftUICharts` native framework for iOS versions 16+. Since then, I see consider this Swift Package as reduntant and will no more update it, unless asked nicely for some project which needs to support old iOS version.
+
+## SwiftUICharts
 A charting library for SwiftUI.
 
 ### Current Charts
